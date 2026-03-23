@@ -1,0 +1,221 @@
+Category,Parameter,Description,Junior PM,Intermediate PM,Senior PM,Staff PM,Principal PM
+Impact & Influence,Leadership,"How you lead and influence others toward shared goals.","Demonstrates ownership of tasks and begins influencing peers through reliability and positive collaboration. Seeks opportunities to contribute beyond assigned responsibilities.
+
+[PM] Builds basic understanding of the stakeholder landscape and begins forming relationships. Learns to navigate cross-functional dynamics with manager support. Begins understanding how to align upward on priorities and surface key decisions.","Provides informal leadership by guiding peers and supporting alignment in small initiatives. Builds trust through consistency, accountability, and sound judgment.
+
+[PM] Mobilizes cross-functional teams around a shared problem without formal authority. Proactively manages upward to secure support and resources for product initiatives. Aligns the team around outcomes they are fighting for.","Provides clear direction and guidance within the team; sets standards others follow. Influences team alignment by connecting work to broader goals.
+
+[PM] Influences and aligns across multiple teams without formal authority. Negotiates priorities with adjacent product areas. Effectively manages upward to shape leadership's understanding of product opportunities and trade-offs. Informs, involves, and collaborates with stakeholders autonomously.","Leads initiatives across teams; establishes clarity of purpose and motivates others. Acts as a visible leader who drives collaboration and alignment across multiple groups.
+
+[PM] Drives alignment across teams within their domain, removing organizational blockers and ensuring teams execute cohesively. Recognized as the definitive product authority in their domain who other PMs turn to for complex decisions. Manages upward to secure strategic commitment for domain-level initiatives.","Recognised organisationally as a leadership figure across domains. Shapes strategy and inspires alignment through credibility, vision, and influence.
+
+[PM] Is a trusted strategic partner sought out for navigating complex topics. Aligns multiple teams, key stakeholders, and leadership around outcomes. Shapes executive understanding of product strategy and trade-offs. Influences at the highest levels of the organization."
+Impact & Influence,Time Horizon for Impact,"The time scale at which you plan and deliver outcomes.","Focuses on short-term goals (days to weeks); learns how work contributes to team output.
+
+[PM] Operates on a 1-3 sprint horizon. Focused on efficiently building the product within well-defined epics.","Works toward medium-term outcomes (quarter-level); aligns individual output with team goals.
+
+[PM] Operates on a 1-2 quarter horizon. Focused on effectively building the product and driving adoption within their domain.","Operates on long-term goals (quarters+); focuses on sustained impact and legacy.
+
+[PM] Operates on a multi-quarter horizon (2-4 quarters). Focused on building the right product and driving tangible customer and commercial outcomes.","Drives multi-quarter to annual initiatives across multiple teams and/or domains.
+
+[PM] Operates on a 12-18 month horizon within their product domain, with a 2-3 year strategic vision. Focused on turning ambiguous domain challenges into executed outcomes with measurable business impact.","Leads cross-functional initiatives that align with strategic organisational goals; delivers org-level outcomes through deep domain expertise.
+
+[PM] Operates on an 18-36 month horizon. Focused on shaping company-level product direction, advancing PM maturity, and ensuring the product organization as a whole delivers on strategic goals."
+Impact & Influence,Planning & Scope of Impact,"The breadth and depth of your planning and ownership.","Needs help breaking down and sequencing work; scope limited to sub-tasks or small features.
+
+[PM] Scope: self and epics. Impact focused on efficiently building the product. Typically works alongside a more senior PM on a part or component of product strategy.","Plans and prioritizes effectively; owns end-to-end delivery of projects or initiatives.
+
+[PM] Scope: team and domains. Owns the product area end-to-end, ensuring every activity has the necessary visibility, support, and progress. Recognized as the product leader for their area.","Plans strategically within teams or domains; owns large initiatives with wide-ranging impact.
+
+[PM] Scope: up to 2 teams and respective domains, cross-functional initiatives (e.g., OKRs). Shapes the long-term product area strategy with light support. Recognized as leader for the area and adjacent ones.","Plans and delivers large-scale initiatives across teams and domains; drives alignment at initiative level.
+
+[PM] Scope: multiple teams within their domain and associated cross-functional partners. Owns high-complexity, high-stakes initiatives end-to-end. Decomposes complex domain problems into clear team-level remits and ensures delivery across all of them.","Owns the strategic planning of initiatives within a functional area; influences prioritisation based on organisational value.
+
+[PM] Scope: multiple teams, taskforce, cross-functional initiatives, other PMs. Recognized as the strategic product leader for respective areas and their second-order effects into other areas."
+Impact & Influence,Managing Uncertainty,"How you navigate and reduce ambiguity for yourself and others.","Relies on others for clarity; learning to ask good questions.
+
+[PM] Can communicate what problem/opportunity they are working on with support. Starts applying a selection of frameworks and tools but needs guidance on which ones to apply.","Handles moderate ambiguity by gathering input, asking the right questions, and adjusting as needed.
+
+[PM] Synthesizes inputs from various sources to craft a single narrative. Demonstrates clarity when articulating the problem. Understands the broader problem/opportunity and how parts fit into the bigger picture.","Clarifies and reduces ambiguity for others; drives alignment within teams or domains even in highly complex situations.
+
+[PM] Articulates problem statements, including complex ones, with exceptional clarity. Continues to refine understanding as new information emerges. Anchors decisions in data and insights.","Anticipates ambiguity early and resolves proactively across teams and domains; enabling others to operate effectively.
+
+[PM] Resolves deep domain ambiguity by creating structured frameworks that enable teams across their domain to operate effectively. Makes high-stakes calls in uncertain conditions. Coaches PMs in their area on discovery and framing techniques.","Proactively identifies areas of ambiguity and drives clarity across teams through structured frameworks and domain insight.
+
+[PM] Identifies and articulates the most ambiguous problem spaces across a range of product areas and use cases into coherent narratives. Coaches the product organization in tools/frameworks with the right degree of adaptation."
+Craft Mastery & Performance,Domain Expertise,"Depth of knowledge in your craft and ability to apply it.","Building foundational knowledge; starting to understand tools, concepts, or systems.
+
+[PM] Talks to customers/users in their specific area and has some understanding of their needs. Relies on guidance to evaluate data and shape the story from it. Defines what success looks like with support. Is aware of competitors for their use case area. Has an understanding of company goals and strategy.","Possesses strong, practical knowledge; recognized as a dependable contributor in core areas.
+
+[PM] Talks to customers/users always looking for deeper insights. Understands needs behind feature requests. Proactively identifies metrics to track and measure success (customer and business benefit). Can independently seek data insights and uses qualitative and quantitative data to craft problem/opportunity statements. Analyzes competitor problems to inform decisions. Proactively links product development to company goals.","Deep subject-matter expertise; trusted advisor within and sometimes beyond the team.
+
+[PM] Recognized internally as an expert in customer/user needs for their area. Independently defines and establishes metrics, evaluating customer and business impact. Is the go-to person for analytics insight in their area. Can effectively drive strategies that move key metrics. Understands competitor landscape and is the go-to person for competitor insight. Uses deep understanding of company strategy to inform product decisions.","Recognised internal authority; sets direction for best practices across teams and domains.
+
+[PM] Recognized as the deepest domain expert within their product area, across multiple use cases and customer segments. Synthesizes quantitative and qualitative data to identify patterns and opportunities that individual teams might miss. Defines and tracks success metrics across their domain. Thinks proactively about competitor insight to uplevel team thinking. Prepares strategic options including considerations across wider product areas.","Recognised as a top-level expert within the organisation; defines technical or functional direction in their area of specialisation.
+
+[PM] Talks to customers across target segments and a broad range of use cases, always looking for deeper insights and how those relate to each other. Uses data/metrics to shape company strategy. Proactively proposes and influences success metrics and KPIs at company level. Socializes and helps establish company-wide KPIs. Identifies sustainable competitive advantages across use cases."
+Craft Mastery & Performance,Execution & Autonomy,"How independently and effectively you deliver end-to-end outcomes.","Executes well-scoped tasks with support; begins showing independence.
+
+[PM] Needs support to make strong scoping decisions. Understands GTM plans, pricing, and packaging approach. Needs support to consider the broader customer experience beyond their immediate area.","Delivers complex work independently; holds self accountable for outcomes.
+
+[PM] Facilitates effective scoping sessions with the team. Ensures teams focus on scoping small. Collaborates with PMkt to define GTM plan. Defines new and existing customer feature onboarding. Effectively partners with Sales/CS to communicate product value.","Leads complex workstreams with high accountability and autonomy; removes blockers for others.
+
+[PM] Challenges assumptions about what is actually needed and sharpens the team's thinking. An influential and early collaborator with GTM. Defines impactful onboarding. Very proactive with enablement. Partners with Sales/CS to expose full product value.","Executes strategic cross-team projects independently; consistently removes blockers systemically.
+
+[PM] Drives execution of high-stakes, high-complexity initiatives across teams within their domain. Forms coherent think-big-start-small approaches. Owns GTM strategy for their domain's significant releases. Removes systemic blockers that span team boundaries.","Drives critical programs autonomously across multiple teams or domains; removes systemic blockers and champions scalable solutions.
+
+[PM] Works across multiple teams forming coherent approaches. Shapes and advances GTM for significant product releases. Effectively positions the product in relation to existing customers' IT landscape and competing products. Pro-actively drives internal enablement/documentation."
+Craft Mastery & Performance,Quality of Work,"The standard and consistency of your deliverables.","Gets things working; improving structure, clarity, and consistency.
+
+[PM] Needs guidance to deliver outcomes at a project level. Develops an understanding of technical architecture and tradeoffs. Contributes to framing the right UX goals. Relies on support from experts to balance trade-offs.","Produces high-quality deliverables with attention to detail and standards.
+
+[PM] Can demonstrate meaningful impact to customers and business. Has good understanding of what is technically possible with what level of effort. Knows when to prioritize UX effort. New developments maintain or enhance product coherence.","Consistently elevates quality standards; sets benchmarks and models excellence.
+
+[PM] Consistently delivers meaningful impact. Delivers impact at strategy level (aggregate of multiple projects). Shapes technical and UX discussions and challenges the team to deliver best outcomes in the most efficient way.","Scales quality standards across multiple teams and programs.
+
+[PM] Drives significant, measurable business impact within their domain across multiple teams. Identifies and resolves technical and UX challenges that span team boundaries. Balances proven approaches with calculated bets on new technologies or methods.","Sets quality benchmarks within the discipline; ensures sustainable standards are scaled across teams through tools, reviews, and enablement.
+
+[PM] Motivates multiple teams to deliver significant impact to customers and business. Evangelizes the importance of coherent product experience and brings convincing evidence to strengthen the case."
+Craft Mastery & Performance,Learning Agility & Feedback,"How quickly you learn, adapt, and help others grow through feedback.","Learns quickly when exposed to new tools, processes, or contexts. Open to receiving and applying feedback with guidance.
+
+[PM] Demonstrates curiosity, openness, and the ability to adapt approaches in response to feedback and changing priorities. Contributes new ideas and suggestions for innovative approaches within their product area.","Seeks, gives, and incorporates feedback to improve self and others. Learns new skills efficiently; applies them to deliver stronger outcomes.
+
+[PM] Able to adapt and pivot own approach in response to challenges, feedback, and changing priorities. With light support, drives change/transformation in their product area and aligns key stakeholders to new visions.","Gives impactful, developmental feedback; builds feedback culture within the team. Continuously expands expertise and shares insights with peers.
+
+[PM] Able to instigate and drive change in response to challenges and feedback. Understands the impact of transformation and proactively devises communication strategies. Actively embraces a growth mindset. Influences and helps advance PM organization maturity.","Embeds feedback culture across multiple teams; models vulnerability and continuous growth. Integrates new knowledge into frameworks that benefit multiple teams.
+
+[PM] Drives transformation within their domain, communicating a clear vision and building commitment across teams. Coaches PMs in their area on product craft, discovery methods, and stakeholder management. Models continuous learning by going deep on emerging practices.","Cultivates a culture of feedback; mentors senior ICs and cross-functional peers through thought leadership. Shapes organisational learning practices; promotes mastery across the company.
+
+[PM] Proactively seeks out opportunities to enact change, communicating vision and driving commitment amongst leaders. Empowers others to adopt a growth mindset. Advances the maturity level of the Product Management function as a whole."
+People & Collaboration,Team Partnership & Mentorship,"How you collaborate with and develop others.","Contributes in team rituals and workflows; works well with direct teammates. Learns from others and asks questions; motivated to grow.
+
+[PM] Typically supports the manager on wider transformation and change strategies. Begins building relationships across the product team.","Collaborates effectively across teams; navigates interpersonal dynamics. Begins mentoring junior teammates; shares learnings and supports development.
+
+[PM] Proactively generates ideas and makes suggestions. Supports multiple stakeholders across the group, helping to drive alignment. Begins coaching junior PMs on product craft.","Facilitates high-performing team dynamics; often the go-to for alignment and collaboration. Coaches peers and emerging talent; actively raises others.
+
+[PM] Understands the impact of change/transformation and proactively devises communication strategies. Actively embraces a growth mindset and works to solve challenges. Mentors PMs and helps them develop product craft and stakeholder skills.","Operates as a collaboration anchor across teams, often an informal leader. Champions development programs across teams.
+
+[PM] Acts as the collaboration hub within their domain, ensuring teams work cohesively toward shared outcomes. Coaches and develops PMs within their domain on product strategy, discovery, and execution. Actively builds the next generation of Senior PMs.","Collaborates across departments as a trusted expert; influences decisions at the org level. Develops others by mentoring senior peers and building internal networks.
+
+[PM] Empowers and leads teams to drive complex transformation across broad product areas. Demonstrates a willingness to experiment, flex, and adapt, empowering others to adopt a similar growth mindset. Builds PM leadership capacity across the organization."
+People & Collaboration,Communication,"How clearly and effectively you communicate across audiences.","Communicates progress and blockers with support; learning to express clearly. Begins to listen actively and adapt tone.
+
+[PM] Articulates what problem they are working on and why it matters. Begins adapting communication for different audiences (engineering vs. design vs. stakeholders) with guidance. Learns to frame discussions in outcome terms rather than feature terms.","Communicates with clarity and structure across peers and stakeholders. Builds rapport through empathy and inclusivity.
+
+[PM] Crafts clear product narratives that connect features to customer outcomes. Adapts messaging effectively for engineering, design, Sales, and CS. Partners with Sales/CS to communicate product value. Presents data with a clear narrative and recommendation.","Influences through clear, strategic communication; aligns diverse stakeholders. Builds trust by listening deeply and addressing tensions constructively.
+
+[PM] Tells the product story with clarity and conviction across all audiences. Positions the product effectively against competitors. Drives GTM communication ensuring product decisions and their rationale cascade to all stakeholders. Navigates difficult conversations about deprioritization with empathy and transparency.","Shapes communication strategies that align multi-team efforts and organisational goals. Creates open channels for dialogue and inclusive communication.
+
+[PM] Shapes product narratives that align multiple teams within their domain. Positions their domain's products effectively in the competitive landscape. Drives enablement and documentation to ensure the product has the best chance of market success.","Crafts compelling narratives that shape direction and inspire alignment across technical and non-technical audiences. Resolves high-stakes conflicts through trust and collaboration.
+
+[PM] Crafts compelling product narratives that shape company direction. Positions the entire product portfolio in relation to the ecosystem. Ensures product communication cascades effectively throughout the organization at all levels."
+People & Collaboration,Alignment to Values,"How consistently you embody and promote company values.","Demonstrates awareness of company values and begins incorporating them into daily work.
+
+[PM] Begins to understand the ethical implications of product decisions. Learns to balance stakeholder requests with genuine user needs.","Consistently applies company values in decision-making and peer collaboration. Positively influences the team by modelling respectful and values-based behaviours.
+
+[PM] Navigates tensions between user value and business value with transparency. Considers the impact of product decisions on different user segments, including edge cases.","Actively promotes values through actions and decisions; holds self accountable as a role model. Challenges behaviours that conflict with values, reinforcing standards for the team.
+
+[PM] Champions ethical product practices within their area. Challenges dark patterns or manipulative design choices. Ensures product decisions balance growth metrics with user trust and long-term product integrity.","Embeds values into cross-team initiatives, ensuring alignment between outcomes and organisational principles. Acts as a trusted cultural ambassador.
+
+[PM] Ensures product decisions within their domain consistently reflect company values, even under pressure to prioritize short-term metrics over long-term user trust and product integrity.","Consistently role models company values across functions, setting behavioural standards for senior peers and teams. Ensures that values guide high-stakes decisions, shaping culture and influencing organisational priorities.
+
+[PM] Sets the standard for ethical product practices across the organization. Ensures product strategy balances business growth with user trust, privacy, and long-term sustainability."
+Strategic Contribution,Strategic Thinking,"How you connect execution to long-term strategy and vision.","Aware of team goals; learning to connect tasks to outcomes.
+
+[PM] Has an understanding of company goals and strategy. Convincingly articulates how their work contributes to the wider strategy. Seeks to understand product area strategy.","Understands strategy; aligns work and ideas with broader context.
+
+[PM] Proactively links how product development in their area concretely contributes to overall company goals. Contributes pro-actively to the product strategy. Shapes the product area mid-term strategy with manager support.","Shapes team direction; connects daily work with long-term strategy.
+
+[PM] Leverages a deep and internalized understanding of company goals and strategy to inform product decisions. Prepares strategic options and drives the decision-making process. Can create/clarify strategy within ambiguous areas with limited guidance.","Defines and connects tactical execution across teams to organisational long-term strategies.
+
+[PM] Translates company goals into a clear, actionable strategy for their domain. Creates and clarifies strategy within highly ambiguous areas of their domain without guidance. Prepares strategic options that account for domain-level trade-offs and cross-team dependencies. Influences at engine level.","Aligns personal and cross-functional initiatives with organisational strategy; ensures initiatives deliver enterprise value.
+
+[PM] Takes the company goals and strategy and uses these to define key focus areas and elevate the product organization. Prepares strategic options including considerations across the wider product areas, and drives the decision-making process at engine and company level."
+Strategic Contribution,Decision-Making,"How you make and own decisions under complexity and trade-offs.","Makes low-risk decisions with support; learning how to weigh trade-offs.
+
+[PM] Begins to understand the trade-offs between scope, timeline, and quality. Relies on manager guidance for prioritization decisions. Starts learning when to escalate vs. decide independently.","Balances speed and judgment; makes solid, context-aware decisions.
+
+[PM] Makes sound prioritization decisions within their product area. Weighs user value against business value when scoping features. Understands build vs. buy trade-offs for their domain. Balances short-term adoption needs with long-term product coherence.","Makes informed, often high-stakes decisions; weighs trade-offs across multiple dimensions.
+
+[PM] Makes confident prioritization decisions across complex, multi-stakeholder contexts. Balances scope vs. timeline vs. quality with clear rationale. Champions data-informed decisions while knowing when to trust product intuition. Owns the decision and its outcomes.","Makes cross-team and cross-functional decisions; considers broader organisational outcomes.
+
+[PM] Makes high-stakes product decisions within their domain with significant business implications. Balances competing priorities across teams in their area. Navigates build vs. buy vs. partner decisions with deep domain context. Considers second-order effects on adjacent domains.","Makes critical decisions with significant technical or business implications; balances speed, risk, and long-term sustainability.
+
+[PM] Makes high-stakes product and portfolio decisions that shape the company direction. Balances growth, risk, and long-term sustainability across the product organization. Drives the decision-making process at engine and company level with conviction and clarity."
+Strategic Contribution,Innovation & Best Practices,"How you improve ways of working and drive creative solutions.","Learns and applies existing best practices; contributes incremental improvements. Approaches problems with curiosity.
+
+[PM] Starts applying product frameworks and tools (discovery, prioritization). Approaches product challenges with curiosity and begins experimenting with user research and hypothesis testing.","Improves team tools/processes; adapts and evolves ways of working. Demonstrates creative problem-solving within the team.
+
+[PM] Comfortable with a range of product frameworks (discovery, prioritization, experimentation). Runs experiments and validates assumptions with users before committing to solutions. Focuses on the right problem before jumping to solutions.","Drives continuous improvement; introduces and scales best practices across functions. Tackles complex problems with structured creativity.
+
+[PM] Deeply versed in which tools/frameworks to use with the right level of pragmatism. Proposes product bets based on market insights and validated hypotheses. Champions experimentation culture (hypothesis-driven development, rapid prototyping) within their product area.","Creates frameworks and standards that scale innovation across multiple teams. Applies creative problem-solving to cross-team challenges.
+
+[PM] Coaches PMs in their domain on product frameworks and experimentation methodology. Identifies opportunities for product innovation within their domain. Creates reusable playbooks from patterns across teams. Drives a culture of hypothesis-driven development.","Defines and evolves best practices across functions; drives systemic innovation. Recognised for creative problem-solving that addresses organisation-wide challenges.
+
+[PM] Coaches the product organization on frameworks with the right degree of adaptation and customization. Identifies transformative product opportunities at company level. Advances the PM function's experimentation and innovation maturity. Shapes the culture of product innovation across the organization."
+Potential Misalignments,Ownership,"Risk of under- or over-owning outcomes.","May over-rely on direction or task assignments; avoids taking initiative for full outcomes. Can miss follow-through or assume others are tracking progress.
+
+[PM] May own assigned features but not the customer outcomes they are supposed to drive. May confuse completing user stories with delivering value to users.","May defer ownership when under pressure or ambiguity increases. Might escalate too quickly without assessing what can be solved independently.
+
+[PM] May own the roadmap but not the business outcomes. May avoid taking ownership of GTM success or customer adoption, treating these as someone else's responsibility.","Can be overly hands-on, leading to bottlenecks or micromanagement. Struggles to empower others or build sustainable ownership across the team.
+
+[PM] May own too much of the execution detail instead of empowering the cross-functional team. May struggle to delegate product decisions to other PMs while maintaining product coherence.","May overcommit without evaluating leverage; risks becoming a single point of failure.
+
+[PM] May try to own all decisions within their domain rather than building ownership capacity in the PMs they mentor. Risks becoming the bottleneck for cross-team product alignment.","May focus too narrowly on domain outcomes and underinvest in aligning with broader organisational goals. May be reluctant to step outside expertise when broader leadership is needed.
+
+[PM] May own the product vision but lose connection to execution reality. May focus on strategic ownership while neglecting to ensure other PMs have clear ownership of their product areas."
+Potential Misalignments,Initiative,"Risk of being reactive rather than proactive.","May wait to be asked or assigned; unsure when or how to speak up. Reluctant to suggest improvements or challenge norms.
+
+[PM] May wait for customer feature requests instead of proactively identifying problems worth solving. May rely on the manager to set the discovery agenda.","Reactive rather than proactive; may see issues but not take the first step to solve. Hesitates to challenge existing processes.
+
+[PM] May react to competitor moves rather than proactively shaping the product direction. May default to building what stakeholders ask for rather than challenging the problem framing.","Focused on delivery over long-term improvement. May deprioritize exploration or innovation in favor of what is urgent or familiar.
+
+[PM] May over-index on shipping features at the expense of strategic discovery. May deprioritize market research and competitive analysis when delivery pressure increases.","May prioritize urgent needs over strategic change; risks incrementalism.
+
+[PM] May focus on optimizing their domain rather than identifying transformative opportunities within it. May avoid proposing bold product bets in favor of safer incremental improvements.","May prioritise refinement of existing systems over initiating strategic cross-functional improvements. May hesitate to challenge organisational norms.
+
+[PM] May refine existing product strategy rather than challenging fundamental assumptions. May avoid disrupting successful product lines even when market signals suggest the need for transformation."
+Potential Misalignments,Scope Awareness,"Risk of misjudging boundaries of influence.","May work in isolation, unaware of cross-functional implications. Focused too narrowly on immediate tasks.
+
+[PM] May focus exclusively on their feature area without understanding how it impacts adjacent product areas or the overall user journey.","May miss upstream/downstream dependencies. Assumes alignment without validating with all stakeholders.
+
+[PM] May overlook how product decisions affect Sales enablement, CS workflows, or Marketing positioning. May assume alignment with engineering on scope without explicit validation.","May overextend into areas beyond remit, causing friction. Can misjudge where to influence vs where to support.
+
+[PM] May overextend into engineering decisions without securing buy-in from the tech lead. May try to influence adjacent product areas without proper stakeholder alignment.","May expand influence without securing necessary partnerships; risks diluting focus.
+
+[PM] May go too deep into their domain and miss dependencies with adjacent product areas or platform considerations. May focus on domain excellence while ignoring cross-product integration needs.","May overlook upstream/downstream impact of domain decisions; risks operating in a silo.
+
+[PM] May focus on product strategy without sufficient integration with go-to-market, engineering platform, or customer success strategies. May underestimate the organizational impact of product decisions."
+Potential Misalignments,Feedback & Communication,"Risk of communication gaps or poor feedback habits.","May take feedback personally or avoid asking for it. Struggles to express blockers or needs clearly.
+
+[PM] May frame product discussions in feature terms rather than outcome terms. May struggle to communicate the 'why' behind product decisions to the cross-functional team.","May give vague or overly cautious feedback. Can assume clarity instead of confirming shared understanding.
+
+[PM] May present data without a clear product narrative or recommendation. May avoid giving direct feedback to engineering on scope trade-offs or quality concerns.","Can be too direct or infrequent with feedback. Risk of communication gaps when context is not shared across layers.
+
+[PM] May under-communicate strategic product context to the team while over-communicating tactical details. May avoid difficult conversations about roadmap deprioritization with stakeholders.","May broadcast without dialogue; risks gaps in shared context and understanding.
+
+[PM] May communicate product vision without ensuring teams truly understand the strategy and their role in it. May give feedback on product craft but neglect feedback on stakeholder management and leadership skills.","May assume expertise implies alignment, resulting in missed communication gaps. Feedback may be overly technical or lack strategic framing.
+
+[PM] May communicate product strategy at a high level but fail to ensure the message cascades effectively to all product teams. May frame feedback around product outcomes without addressing PM craft and process improvements."
+Potential Misalignments,Quality & Detail,"Risk of imbalance between speed and thoroughness.","May prioritize speed over quality. Lacks awareness of impact on others or end users.
+
+[PM] May ship features without validating the problem with users first. May skip user research or data analysis to move faster on delivery.","Sometimes sacrifices clarity or scalability for quick wins. Needs reminders to check for long-term maintainability.
+
+[PM] May over-spec product requirements before testing assumptions with users. May focus on feature completeness at the expense of iteration speed and learning velocity.","May overlook foundational issues while focusing on strategic initiatives. Risks missing detail when delegating or scaling processes.
+
+[PM] May push for ambitious product bets without sufficient user validation. May sacrifice UX quality for shipping speed when under delivery pressure.","Risks shortcuts in scalable processes while scaling impact.
+
+[PM] May prioritize shipping across their domain at the expense of deep product quality in each area. May apply the same level of rigor to all product initiatives rather than calibrating discovery effort to expected impact.","May over-engineer solutions at the expense of timely delivery, or rush to deliver quickly at the expense of long-term quality.
+
+[PM] May over-invest in strategic product planning and frameworks at the expense of shipping. May lose touch with product quality details while focused on organizational-level initiatives."
+Potential Misalignments,Mentorship & Influence,"Risk of under-leveraging your ability to grow others.","May depend too much on mentors for direction. Does not recognize their own ability to support peers.
+
+[PM] May not recognize they can help teammates develop product thinking skills. May focus entirely on their own product learning without sharing customer insights or market knowledge.","May miss opportunities to mentor or lift others. Focuses on their own growth more than team growth.
+
+[PM] May focus on building own product expertise without helping junior PMs develop their discovery and stakeholder skills. May hoard customer insights or competitive intelligence rather than sharing broadly.","May assume visibility equals influence. Risks creating dependence instead of building capacity in others.
+
+[PM] May mentor by providing product answers rather than coaching others through the discovery process. May inadvertently create dependency on their product judgment rather than developing it in other PMs.","May mentor select individuals but neglect broader leadership development needs.
+
+[PM] May focus mentoring on product craft skills while neglecting strategic thinking and stakeholder management development in the PMs they coach. May not invest enough in building the next generation of Senior PMs.","May focus mentoring on specialist growth alone, under-leveraging influence to foster strategic leadership across the organization.
+
+[PM] May focus on advancing product excellence while underinvesting in building PM leadership capacity across the organization. May mentor on what to think about product rather than how to think about product."

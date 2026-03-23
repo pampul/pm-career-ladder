@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM Career Ladder — Self Assessment</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* LumApps Design System */
+  --la-dark:#191515;--la-card:#403F33;--la-yellow:#FFEC40;--la-yellow-light:#FFFFB1;--la-yellow-50:rgba(255,236,64,.08);
+  --la-border:#E4E4DB;--la-silver:#E4E4DB;
+  --la-focus:#4d65ff;
+  /* Semantic */
+  --green-50:#F0FDF4;--green-100:#DCFCE7;--green-500:#22C55E;--green-700:#15803D;
+  --orange-50:#FFF7ED;--orange-100:#FEF3C7;--orange-500:#F97316;--orange-700:#C2410C;
+  --red-50:#FEF2F2;--red-100:#FEE2E2;--red-500:#EF4444;
+  --gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;--gray-300:#D1D5DB;--gray-400:#9CA3AF;--gray-500:#6B7280;--gray-600:#4B5563;--gray-700:#374151;--gray-800:#1F2937;--gray-900:#111827;
+  --radius:8px;--radius-lg:12px;--radius-xl:16px;--radius-pill:50px;
+  --shadow-sm:0 1px 2px rgba(25,21,21,.05);--shadow:0 1px 3px rgba(25,21,21,.1),0 1px 2px rgba(25,21,21,.06);--shadow-md:0 4px 6px rgba(25,21,21,.07),0 2px 4px rgba(25,21,21,.06);--shadow-lg:0 10px 30px -10px rgba(25,21,21,.2);
+  --transition:all .2s ease;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Inter",sans-serif;color:var(--la-dark);background:#fff;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+.container{max-width:800px;margin:0 auto;padding:20px}
+.screen{display:none;animation:fadeIn .3s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes checkPop{0%{transform:scale(0)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+
+/* Banner */
+.banner{background:var(--orange-100);color:var(--orange-700);padding:10px 16px;border-radius:var(--radius);margin-bottom:16px;font-size:.875rem;display:flex;align-items:center;gap:8px}
+.banner::before{content:"⚠";font-size:1.1rem}
+
+/* Hero header */
+.hero{text-align:center;padding:48px 20px 40px;background:linear-gradient(135deg,var(--la-dark) 0%,var(--la-card) 100%);color:#FFFFEE;border-radius:var(--radius-xl);margin-bottom:32px;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,236,64,.06) 0%,transparent 70%);pointer-events:none}
+.hero-logo{width:48px;height:48px;border-radius:50%;margin:0 auto 16px}
+.hero h1 span{color:var(--la-yellow)}
+.hero h1{font-size:2.2rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.hero .subtitle{font-size:1.1rem;opacity:.9;margin-bottom:6px}
+.hero .meta{font-size:.85rem;color:rgba(255,255,238,.6)}
+
+/* Mode cards */
+.mode-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+@media(max-width:600px){.mode-cards{grid-template-columns:1fr}}
+.mode-card{border:1px solid var(--la-border);border-radius:var(--radius-xl);padding:36px 28px;cursor:pointer;transition:var(--transition);background:#fff;box-shadow:var(--shadow-sm);font:inherit;text-align:center}
+.mode-card:hover{border-color:var(--la-yellow);background:var(--la-yellow-50);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.mode-card .icon{font-size:2.5rem;margin-bottom:16px}
+.mode-card h2{font-size:1.15rem;font-weight:600;margin-bottom:8px;color:var(--la-dark)}
+.mode-card p{font-size:.875rem;color:var(--gray-500)}
+
+/* Form */
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-weight:500;margin-bottom:6px;color:var(--gray-700);font-size:.9rem}
+.form-group input,.form-group select{width:100%;padding:10px 14px;border:1px solid var(--la-border);border-radius:var(--radius);font-size:1rem;transition:var(--transition)}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--la-yellow);box-shadow:0 0 0 3px rgba(255,236,64,.2)}
+.toggle-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.toggle-row label{margin-bottom:0;font-weight:400}
+.toggle-btn{padding:8px 16px;min-height:44px;border:1px solid var(--la-border);border-radius:var(--radius-pill);cursor:pointer;background:#fff;font-size:.875rem;transition:var(--transition);font:inherit;display:inline-flex;align-items:center}
+.toggle-btn.active{background:var(--la-dark);color:var(--la-yellow);border-color:var(--la-dark)}
+.conditional-field{margin-left:24px;margin-bottom:12px}
+.form-card{background:#fff;border:1px solid var(--la-border);border-radius:var(--radius-xl);padding:28px;margin-bottom:24px;box-shadow:var(--shadow-sm)}
+
+/* Buttons */
+.btn{padding:12px 28px;border-radius:var(--radius-pill);font-size:1rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:var(--la-yellow);color:var(--la-dark);box-shadow:var(--shadow-sm)}.btn-primary:hover{background:var(--la-yellow-light);box-shadow:var(--shadow);transform:translateY(-1px)}
+.btn-secondary{background:#fff;color:var(--la-dark);border:2px solid var(--la-yellow)}.btn-secondary:hover{background:var(--la-yellow);color:var(--la-dark)}
+.btn-sm{padding:6px 16px;font-size:.875rem}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-icon{width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:50%}
+
+/* Global progress bar */
+.progress-bar-container{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--gray-100);padding:12px 0;margin:0 -20px;padding-left:20px;padding-right:20px}
+.progress-bar-outer{height:6px;background:var(--gray-100);border-radius:3px;overflow:hidden}
+.progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--la-dark),var(--la-card));border-radius:3px;transition:width .4s ease}
+.progress-bar-text{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:.8rem;color:var(--gray-500)}
+.progress-bar-text strong{color:var(--gray-700)}
+
+/* Stepper */
+.stepper{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin-bottom:20px;flex-wrap:wrap}
+.step-col{display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:4px 8px;min-height:44px;border-radius:var(--radius);transition:var(--transition);background:none;border:none;font:inherit}
+.step-col:hover{background:var(--gray-50)}
+@media(max-width:480px){.step-label{display:none}.step-line{width:8px}.stepper{gap:2px}}
+.step-circle{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.8rem;border:2px solid var(--gray-300);color:var(--gray-400);background:#fff;transition:var(--transition)}
+.step-circle.active{border-color:var(--la-dark);color:#fff;background:var(--la-dark);box-shadow:0 0 0 4px rgba(25,21,21,.12)}
+.step-circle.completed{border-color:var(--la-dark);color:var(--la-yellow);background:var(--la-dark)}
+.step-line{width:16px;height:2px;background:var(--gray-200);margin-top:15px}
+.step-label{font-size:.75rem;text-align:center;color:var(--gray-500);max-width:72px;margin-top:4px;line-height:1.2}
+.step-label.active{color:var(--la-dark);font-weight:600}
+
+/* Dimension header */
+.dim-header{text-align:center;margin-bottom:24px;padding:20px;background:var(--gray-50);border:1px solid var(--la-border);border-radius:var(--radius-xl)}
+.dim-header h2{font-size:1.3rem;font-weight:700;color:var(--la-dark);margin-bottom:4px}
+.dim-header .dim-desc{font-size:.9rem;color:var(--gray-500);margin-bottom:0}
+.dim-header .dim-category{font-size:.75rem;color:var(--la-card);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.dim-counter{font-size:.8rem;color:var(--gray-400);margin-top:8px}
+
+/* Level cards — compact mode */
+.level-card{border:1px solid var(--la-card);border-radius:var(--radius-lg);margin-bottom:8px;cursor:pointer;transition:var(--transition);overflow:hidden;background:var(--la-card);color:#FFFFEE}
+.level-card:hover{border-color:var(--la-yellow);box-shadow:var(--shadow-sm)}
+.level-card.expanded{box-shadow:var(--shadow-lg)}
+.level-card.selected{border-color:var(--la-yellow);box-shadow:0 0 0 3px rgba(255,236,64,.15)}
+.level-card.selected.expanded{border-color:var(--la-yellow)}
+.level-card.selected .check-icon{animation:checkPop .3s ease}
+.level-card-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;gap:12px}
+.level-card-header .left{display:flex;align-items:center;gap:10px}
+.level-name{font-weight:600;font-size:.9rem;color:#FFFFEE}
+.level-number{width:24px;height:24px;border-radius:50%;background:rgba(255,255,238,.1);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;color:rgba(255,255,238,.6);flex-shrink:0;transition:var(--transition)}
+.level-card.selected .level-number{background:var(--la-yellow);color:var(--la-dark)}
+.level-preview{font-size:.8rem;color:rgba(255,255,238,.4);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.level-card.expanded .level-preview{display:none}
+@media(max-width:480px){.level-preview{display:none}}
+.expand-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,238,.4);font-size:1rem;transition:transform .2s,color .2s,background .2s;flex-shrink:0;border-radius:50%;margin:-8px -8px -8px 0}
+.expand-icon:hover{background:rgba(255,255,238,.1);color:#FFFFEE}
+.level-card.expanded .expand-icon{transform:rotate(180deg)}
+.check-icon{color:var(--la-yellow);font-size:1.1rem;flex-shrink:0;display:none}
+.level-card.selected .check-icon{display:block}
+.level-card-body{padding:0 16px 16px;display:none}
+.level-card.expanded .level-card-body{display:block;animation:fadeIn .2s ease}
+.select-level-btn{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:8px 20px;min-height:44px;background:var(--la-yellow);color:var(--la-dark);border:none;border-radius:var(--radius-pill);font-size:.85rem;font-weight:600;cursor:pointer;transition:var(--transition)}
+.select-level-btn:hover{background:var(--la-yellow-light);transform:translateY(-1px)}
+.level-card.selected .select-level-btn{background:#FFFFEE;color:var(--la-dark)}
+.level-core{font-size:.85rem;color:#FFFFEE;line-height:1.6}
+.level-pm{margin-top:12px;border-left:3px solid rgba(255,255,238,.15);padding:8px 0 8px 14px}
+.pm-label{font-size:.75rem;font-weight:600;color:var(--la-yellow);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.pm-content{font-size:.83rem;color:rgba(255,255,238,.65);line-height:1.5;font-style:italic}
+.skip-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin-top:12px;color:var(--gray-400);font-size:.8rem;cursor:pointer;padding:8px 16px;border-radius:var(--radius);transition:var(--transition);background:none;border:none;font:inherit;text-decoration:underline}
+.skip-link:hover{color:var(--gray-600);background:var(--gray-50)}
+.skip-link:focus-visible{outline:2px solid var(--la-focus);outline-offset:2px}
+.skipped-state{text-align:center;padding:32px;color:var(--gray-400);font-size:.9rem}
+.skipped-state .undo{color:var(--blue-500);cursor:pointer;margin-top:8px;display:inline-block}
+.skipped-state .undo:hover{text-decoration:underline}
+
+/* Note textarea in cards */
+.note-area{margin-top:12px}
+.note-area textarea{width:100%;min-height:60px;padding:10px 12px;border:1px solid rgba(255,255,238,.15);border-radius:var(--radius);background:rgba(255,255,238,.08);color:#FFFFEE;font-family:inherit;font-size:.83rem;line-height:1.5;resize:vertical;transition:border-color .2s}
+.note-area textarea::placeholder{color:rgba(255,255,238,.3)}
+.note-area textarea:focus{outline:none;border-color:var(--la-yellow);background:rgba(255,255,238,.12)}
+
+/* Context questions screen */
+.context-screen{max-width:640px;margin:0 auto}
+.context-question{margin-bottom:24px}
+.context-question label{display:block;font-weight:600;font-size:.95rem;color:var(--la-dark);margin-bottom:8px;line-height:1.4}
+.context-question textarea{width:100%;min-height:80px;padding:12px 14px;border:1px solid var(--la-border);border-radius:var(--radius);font-family:inherit;font-size:.9rem;line-height:1.5;resize:vertical;transition:border-color .2s}
+.context-question textarea::placeholder{color:var(--gray-400)}
+.context-question textarea:focus{outline:none;border-color:var(--la-yellow);box-shadow:0 0 0 3px rgba(255,236,64,.15)}
+.context-question .optional{font-weight:400;font-size:.8rem;color:var(--gray-400);margin-left:4px}
+
+/* Navigation */
+.eval-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:16px;border-top:1px solid var(--gray-100)}
+.eval-nav .center-info{font-size:.8rem;color:var(--gray-400)}
+
+/* Saved toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--la-dark);color:var(--la-yellow);padding:10px 20px;border-radius:var(--radius-pill);font-size:.85rem;opacity:0;transform:translateY(10px);transition:all .3s ease;pointer-events:none;z-index:1000;box-shadow:var(--shadow-lg)}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* Results */
+.result-hero{text-align:center;padding:32px;background:linear-gradient(135deg,var(--la-dark),var(--la-card));color:#FFFFEE;border-radius:var(--radius-xl);margin-bottom:32px;box-shadow:var(--shadow-lg)}
+.result-hero .name{font-size:1rem;opacity:.8;margin-bottom:8px}
+.score-badge{display:inline-flex;align-items:center;justify-content:center;min-width:80px;padding:0 16px;height:80px;border-radius:50px;background:rgba(255,236,64,.12);border:3px solid var(--la-yellow);margin-bottom:12px}
+.score-badge .score{color:var(--la-yellow);font-weight:800;white-space:nowrap}
+.score-badge .score{font-size:1.8rem;font-weight:800}
+.result-hero .level-title{font-size:1.3rem;font-weight:700;margin-bottom:4px}
+.result-hero .score-detail{font-size:.85rem;opacity:.7}
+
+/* Profile Map */
+.profile-map{margin-bottom:32px}
+.profile-map-row{margin-bottom:16px}
+.profile-map-label{font-size:.85rem;font-weight:600;color:var(--la-dark);margin-bottom:6px;display:flex;justify-content:space-between;align-items:baseline}
+.profile-map-label .level-name{font-weight:700;color:var(--la-card)}
+.profile-map-track{display:flex;gap:3px;height:32px;border-radius:var(--radius);overflow:hidden;background:var(--gray-100)}
+.profile-map-segment{flex:1;border-radius:3px;position:relative;transition:var(--transition)}
+.profile-map-segment.filled{background:var(--la-card)}
+.profile-map-segment.empty{background:transparent}
+.profile-map-segment .seg-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:600;color:rgba(255,255,238,.5);opacity:0;transition:opacity .2s}
+.profile-map-segment.filled .seg-label{color:rgba(255,255,238,.7);opacity:1}
+.profile-map-segment.current .seg-label{color:var(--la-yellow);opacity:1}
+.profile-map-segment.current{background:var(--la-dark)}
+.profile-map-target{position:absolute;right:2px;top:2px;bottom:2px;width:3px;background:var(--la-yellow);border-radius:2px}
+.profile-map-row.not-evaluated .profile-map-track{opacity:.3}
+.profile-map-row.not-evaluated .level-name{color:var(--gray-400);font-weight:400}
+
+.results-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
+@media(max-width:600px){.results-columns{grid-template-columns:1fr}}
+.result-card{border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm)}
+.result-card.strengths{background:var(--green-50);border:1px solid var(--green-100)}
+.result-card.growth{background:var(--orange-50);border:1px solid var(--orange-100)}
+.result-card h3{font-size:.95rem;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.result-card.strengths h3{color:var(--green-700)}
+.result-card.growth h3{color:var(--orange-700)}
+.result-item{padding:10px 12px;background:rgba(255,255,255,.7);border-radius:var(--radius);margin-bottom:6px}
+.result-item .dim-name{font-weight:600;font-size:.85rem}
+.result-item .dim-level{color:var(--gray-500);font-size:.78rem;margin-top:2px}
+
+.misalignment-section{margin-bottom:32px}
+.misalignment-section h3{font-size:1rem;font-weight:600;margin-bottom:12px;color:var(--gray-700)}
+.misalignment-item{padding:14px;border:1px solid var(--la-border);border-radius:var(--radius-lg);margin-bottom:8px;background:#fff;box-shadow:var(--shadow-sm)}
+.misalignment-item .dim-name{font-weight:600;font-size:.85rem;margin-bottom:4px}
+.misalignment-item .pattern-level{font-size:.75rem;color:var(--gray-400);margin-bottom:6px}
+.misalignment-item .pattern{font-size:.83rem;color:var(--gray-600);line-height:1.5}
+
+.detail-table{width:100%;border-collapse:separate;border-spacing:0;font-size:.85rem;margin-bottom:32px;border:1px solid var(--la-border);border-radius:var(--radius-lg);overflow:hidden}
+.detail-table th{text-align:left;padding:10px 14px;background:var(--gray-50);border-bottom:2px solid var(--gray-200);font-weight:600;font-size:.8rem;color:var(--gray-600);text-transform:uppercase;letter-spacing:.03em}
+.detail-table td{padding:10px 14px;border-bottom:1px solid var(--gray-100)}
+.detail-table tr:last-child td{border-bottom:none}
+.detail-table tr.gap-green td{background:var(--green-50)}
+.detail-table tr.gap-orange td{background:var(--orange-50)}
+.detail-table tr.gap-red td{background:var(--red-50)}
+.detail-table tr.skipped td{color:var(--gray-400);font-style:italic}
+
+.export-buttons{display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+.export-fallback{margin-top:16px}
+.export-fallback textarea{width:100%;height:300px;font-size:.75rem;font-family:monospace;padding:8px;border:1px solid var(--gray-300);border-radius:var(--radius)}
+.back-link{display:inline-flex;align-items:center;gap:4px;margin-bottom:16px;color:var(--gray-600);cursor:pointer;font-size:.875rem;padding:8px 0;min-height:44px;transition:var(--transition);background:none;border:none;font:inherit}
+.back-link:hover{color:var(--la-dark)}
+.back-link:focus-visible{outline:2px solid var(--la-focus);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* Focus visible for all interactive */
+button:focus-visible,.btn:focus-visible,.mode-card:focus-visible,.level-card:focus-visible,.step-col button:focus-visible{outline:2px solid var(--la-focus);outline-offset:2px}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:2000;opacity:0;pointer-events:none;transition:opacity .2s ease}
+.modal-overlay.show{opacity:1;pointer-events:auto}
+.modal{background:#fff;border-radius:var(--radius-xl);padding:32px;max-width:400px;width:90%;box-shadow:var(--shadow-lg);transform:scale(.95);transition:transform .2s ease;text-align:center}
+.modal-overlay.show .modal{transform:scale(1)}
+.modal h3{font-size:1.1rem;font-weight:600;margin-bottom:8px}
+.modal p{font-size:.9rem;color:var(--gray-500);margin-bottom:24px}
+.modal-actions{display:flex;gap:12px;justify-content:center}
+.modal-actions .btn{min-width:100px}
+.btn-danger{background:var(--red-500);color:#fff;border:none}.btn-danger:hover{background:#dc2626}
+
+/* Print styles */
+@media print{
+  body{background:#fff;font-size:11pt}
+  .container{max-width:none;padding:0}
+  .hero,.result-hero{background:var(--la-dark)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .progress-bar-container,.eval-nav,.export-buttons,.back-link,.toast,.btn,.skip-link,.mode-cards{display:none!important}
+  .screen{display:block!important;animation:none!important}
+  #screen-mode,#screen-setup,#screen-eval{display:none!important}
+  #screen-results{display:block!important}
+  .results-columns{grid-template-columns:1fr 1fr}
+  .radar-container{break-inside:avoid;page-break-inside:avoid}
+  .detail-table{font-size:9pt}
+  .misalignment-item,.result-card{break-inside:avoid;page-break-inside:avoid}
+  .result-card{box-shadow:none;border:1px solid #ddd}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div id="storage-banner" class="banner" role="alert" aria-live="assertive" style="display:none">Your progress won't be saved if you refresh.</div>
+
+  <!-- Screen 1: Mode Selection -->
+  <div id="screen-mode" class="screen active">
+    <div class="hero">
+      <img src="lumapps-transparent.png" alt="LumApps" class="hero-logo">
+      <h1>PM <span>Career Ladder</span></h1>
+      <p class="subtitle">Self-Assessment Tool</p>
+      <p class="meta">20 dimensions &middot; 5 levels &middot; ~25 min</p>
+      <a href="https://docs.google.com/spreadsheets/d/1a6TXmrpbvKiXqBuvZ1_Cvs8g7Spj97ndDmIKQeRY5Cc/edit?gid=986928926#gid=986928926" target="_blank" rel="noopener" style="display:inline-block;margin-top:16px;color:var(--la-yellow);font-size:.85rem;text-decoration:underline;opacity:.8">View the full career ladder spreadsheet</a>
+    </div>
+    <div class="mode-cards">
+      <button type="button" class="mode-card" onclick="selectMode('ic')">
+        <div class="icon" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--la-dark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+        <h2>I'm evaluating myself</h2>
+        <p>As an IC, assess your own level across PM competencies</p>
+      </button>
+      <button type="button" class="mode-card" onclick="selectMode('manager')">
+        <div class="icon" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--la-dark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h2>I'm evaluating my report</h2>
+        <p>As a manager, assess your direct report's PM competencies</p>
+      </button>
+    </div>
+  </div>
+
+  <!-- Screen 2: Setup -->
+  <div id="screen-setup" class="screen">
+    <button type="button" class="back-link" onclick="showScreen('screen-mode')">&larr; Back</button>
+    <h2 id="setup-title" style="margin-bottom:20px">Setup</h2>
+    <div class="form-card">
+      <div id="setup-form"></div>
+    </div>
+    <button class="btn btn-primary" onclick="startEvaluation()" style="width:100%">Start Evaluation &rarr;</button>
+  </div>
+
+  <!-- Screen 3: Evaluation -->
+  <div id="screen-eval" class="screen">
+    <div class="progress-bar-container">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span class="progress-bar-text"><strong id="progress-count">0</strong> of 20 dimensions &mdash; <span id="progress-percent">0%</span></span>
+        <button type="button" class="skip-link" style="margin:0;padding:4px 12px;font-size:.75rem" onclick="confirmStartOver()">Start over</button>
+      </div>
+      <div class="progress-bar-outer"><div id="progress-bar" class="progress-bar-inner" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Assessment progress" style="width:0%"></div></div>
+    </div>
+    <div id="eval-stepper" style="margin-top:16px"></div>
+    <div id="eval-content"></div>
+    <div class="eval-nav">
+      <button id="btn-prev" class="btn btn-secondary" onclick="prevDimension()">&larr; Previous</button>
+      <span class="center-info" id="dim-position"></span>
+      <button id="btn-next" class="btn btn-primary" onclick="nextDimension()">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- Screen 3.5: Context Questions -->
+  <div id="screen-context" class="screen">
+    <button type="button" class="back-link" onclick="goToDimension(TOTAL_DIMS-1);showScreen('screen-eval')">&larr; Back to evaluation</button>
+    <div class="context-screen">
+      <div class="dim-header" style="margin-bottom:32px">
+        <div class="dim-category">Almost done</div>
+        <h2>Before your results</h2>
+        <p class="dim-desc">A few reflections to add context to your assessment. All optional.</p>
+      </div>
+      <div id="context-questions"></div>
+      <div style="display:flex;justify-content:center;margin-top:32px">
+        <button class="btn btn-primary" onclick="submitContext()">View Results &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Results -->
+  <div id="screen-results" class="screen">
+    <button type="button" class="back-link" onclick="backToEval()">&larr; Back</button>
+    <div id="result-hero" class="result-hero"></div>
+    <div id="profile-map" class="profile-map"></div>
+    <div class="results-columns">
+      <div class="result-card strengths"><h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"/></svg> Top 3 Strengths</h3><div id="strengths-list"></div></div>
+      <div class="result-card growth"><h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg> Top 3 Growth Areas</h3><div id="growth-list"></div></div>
+    </div>
+    <div class="misalignment-section"><h3>Potential Misalignments</h3><div id="misalignments-list"></div></div>
+    <div style="margin-top:32px"><h3 style="margin-bottom:12px">Detailed Scores</h3><div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table id="detailed-table" class="detail-table"></table></div></div>
+    <div class="export-buttons">
+      <button class="btn btn-secondary" onclick="downloadReport()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download Report (.md)</button>
+      <button class="btn btn-primary" id="btn-ai-pack" onclick="copyAIPack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy AI Pack</button>
+    </div>
+    <div id="export-fallback-container"></div>
+
+    <!-- Next Steps -->
+    <div id="next-steps" style="margin-top:40px;padding:28px;background:var(--la-card);border-radius:var(--radius-xl);color:#FFFFEE">
+      <h3 style="color:var(--la-yellow);margin-bottom:16px;font-size:1.1rem">What's next?</h3>
+      <div id="next-steps-content"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Custom modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="event.stopPropagation()">
+    <h3 id="modal-title"></h3>
+    <p id="modal-message"></p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary" id="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button type="button" class="btn btn-danger" id="modal-confirm" onclick="">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const LEVELS = ["Junior PM", "Intermediate PM", "Senior PM", "Staff PM", "Principal PM"];
+const SCORABLE_CATEGORIES = [0, 1, 2, 3];
+
+const CAREER_LADDER = [
+  {
+    category: "Impact & Influence",
+    dimensions: [
+      {
+        name: "Leadership",
+        description: "How you lead and influence others toward shared goals.",
+        levels: {
+          "Junior PM": { core: "Demonstrates ownership of tasks and begins influencing peers through reliability and positive collaboration. Seeks opportunities to contribute beyond assigned responsibilities.", pm: "Builds basic understanding of the stakeholder landscape and begins forming relationships. Learns to navigate cross-functional dynamics with manager support. Begins understanding how to align upward on priorities and surface key decisions.", markers: [] },
+          "Intermediate PM": { core: "Provides informal leadership by guiding peers and supporting alignment in small initiatives. Builds trust through consistency, accountability, and sound judgment.", pm: "Mobilizes cross-functional teams around a shared problem without formal authority. Proactively manages upward to secure support and resources for product initiatives. Aligns the team around outcomes they are fighting for.", markers: [] },
+          "Senior PM": { core: "Provides clear direction and guidance within the team; sets standards others follow. Influences team alignment by connecting work to broader goals.", pm: "Influences and aligns across multiple teams without formal authority. Negotiates priorities with adjacent product areas. Effectively manages upward to shape leadership\'s understanding of product opportunities and trade-offs. Informs, involves, and collaborates with stakeholders autonomously.", markers: [] },
+          "Staff PM": { core: "Leads initiatives across teams; establishes clarity of purpose and motivates others. Acts as a visible leader who drives collaboration and alignment across multiple groups.", pm: "Drives alignment across teams within their domain, removing organizational blockers and ensuring teams execute cohesively. Recognized as the definitive product authority in their domain who other PMs turn to for complex decisions. Manages upward to secure strategic commitment for domain-level initiatives.", markers: [] },
+          "Principal PM": { core: "Recognised organisationally as a leadership figure across domains. Shapes strategy and inspires alignment through credibility, vision, and influence.", pm: "Is a trusted strategic partner sought out for navigating complex topics. Aligns multiple teams, key stakeholders, and leadership around outcomes. Shapes executive understanding of product strategy and trade-offs. Influences at the highest levels of the organization.", markers: [] }
+        }
+      },
+      {
+        name: "Time Horizon for Impact",
+        description: "The time scale at which you plan and deliver outcomes.",
+        levels: {
+          "Junior PM": { core: "Focuses on short-term goals (days to weeks); learns how work contributes to team output.", pm: "Operates on a 1-3 sprint horizon. Focused on efficiently building the product within well-defined epics.", markers: [] },
+          "Intermediate PM": { core: "Works toward medium-term outcomes (quarter-level); aligns individual output with team goals.", pm: "Operates on a 1-2 quarter horizon. Focused on effectively building the product and driving adoption within their domain.", markers: [] },
+          "Senior PM": { core: "Operates on long-term goals (quarters+); focuses on sustained impact and legacy.", pm: "Operates on a multi-quarter horizon (2-4 quarters). Focused on building the right product and driving tangible customer and commercial outcomes.", markers: [] },
+          "Staff PM": { core: "Drives multi-quarter to annual initiatives across multiple teams and/or domains.", pm: "Operates on a 12-18 month horizon within their product domain, with a 2-3 year strategic vision. Focused on turning ambiguous domain challenges into executed outcomes with measurable business impact.", markers: [] },
+          "Principal PM": { core: "Leads cross-functional initiatives that align with strategic organisational goals; delivers org-level outcomes through deep domain expertise.", pm: "Operates on an 18-36 month horizon. Focused on shaping company-level product direction, advancing PM maturity, and ensuring the product organization as a whole delivers on strategic goals.", markers: [] }
+        }
+      },
+      {
+        name: "Planning & Scope of Impact",
+        description: "The breadth and depth of your planning and ownership.",
+        levels: {
+          "Junior PM": { core: "Needs help breaking down and sequencing work; scope limited to sub-tasks or small features.", pm: "Scope: self and epics. Impact focused on efficiently building the product. Typically works alongside a more senior PM on a part or component of product strategy.", markers: [] },
+          "Intermediate PM": { core: "Plans and prioritizes effectively; owns end-to-end delivery of projects or initiatives.", pm: "Scope: team and domains. Owns the product area end-to-end, ensuring every activity has the necessary visibility, support, and progress. Recognized as the product leader for their area.", markers: [] },
+          "Senior PM": { core: "Plans strategically within teams or domains; owns large initiatives with wide-ranging impact.", pm: "Scope: up to 2 teams and respective domains, cross-functional initiatives (e.g., OKRs). Shapes the long-term product area strategy with light support. Recognized as leader for the area and adjacent ones.", markers: [] },
+          "Staff PM": { core: "Plans and delivers large-scale initiatives across teams and domains; drives alignment at initiative level.", pm: "Scope: multiple teams within their domain and associated cross-functional partners. Owns high-complexity, high-stakes initiatives end-to-end. Decomposes complex domain problems into clear team-level remits and ensures delivery across all of them.", markers: [] },
+          "Principal PM": { core: "Owns the strategic planning of initiatives within a functional area; influences prioritisation based on organisational value.", pm: "Scope: multiple teams, taskforce, cross-functional initiatives, other PMs. Recognized as the strategic product leader for respective areas and their second-order effects into other areas.", markers: [] }
+        }
+      },
+      {
+        name: "Managing Uncertainty",
+        description: "How you navigate and reduce ambiguity for yourself and others.",
+        levels: {
+          "Junior PM": { core: "Relies on others for clarity; learning to ask good questions.", pm: "Can communicate what problem/opportunity they are working on with support. Starts applying a selection of frameworks and tools but needs guidance on which ones to apply.", markers: [] },
+          "Intermediate PM": { core: "Handles moderate ambiguity by gathering input, asking the right questions, and adjusting as needed.", pm: "Synthesizes inputs from various sources to craft a single narrative. Demonstrates clarity when articulating the problem. Understands the broader problem/opportunity and how parts fit into the bigger picture.", markers: [] },
+          "Senior PM": { core: "Clarifies and reduces ambiguity for others; drives alignment within teams or domains even in highly complex situations.", pm: "Articulates problem statements, including complex ones, with exceptional clarity. Continues to refine understanding as new information emerges. Anchors decisions in data and insights.", markers: [] },
+          "Staff PM": { core: "Anticipates ambiguity early and resolves proactively across teams and domains; enabling others to operate effectively.", pm: "Resolves deep domain ambiguity by creating structured frameworks that enable teams across their domain to operate effectively. Makes high-stakes calls in uncertain conditions. Coaches PMs in their area on discovery and framing techniques.", markers: [] },
+          "Principal PM": { core: "Proactively identifies areas of ambiguity and drives clarity across teams through structured frameworks and domain insight.", pm: "Identifies and articulates the most ambiguous problem spaces across a range of product areas and use cases into coherent narratives. Coaches the product organization in tools/frameworks with the right degree of adaptation.", markers: [] }
+        }
+      }
+    ]
+  },
+  {
+    category: "Craft Mastery & Performance",
+    dimensions: [
+      {
+        name: "Domain Expertise",
+        description: "Depth of knowledge in your craft and ability to apply it.",
+        levels: {
+          "Junior PM": { core: "Building foundational knowledge; starting to understand tools, concepts, or systems.", pm: "Talks to customers/users in their specific area and has some understanding of their needs. Relies on guidance to evaluate data and shape the story from it. Defines what success looks like with support. Is aware of competitors for their use case area. Has an understanding of company goals and strategy.", markers: [] },
+          "Intermediate PM": { core: "Possesses strong, practical knowledge; recognized as a dependable contributor in core areas.", pm: "Talks to customers/users always looking for deeper insights. Understands needs behind feature requests. Proactively identifies metrics to track and measure success (customer and business benefit). Can independently seek data insights and uses qualitative and quantitative data to craft problem/opportunity statements. Analyzes competitor problems to inform decisions. Proactively links product development to company goals.", markers: [] },
+          "Senior PM": { core: "Deep subject-matter expertise; trusted advisor within and sometimes beyond the team.", pm: "Recognized internally as an expert in customer/user needs for their area. Independently defines and establishes metrics, evaluating customer and business impact. Is the go-to person for analytics insight in their area. Can effectively drive strategies that move key metrics. Understands competitor landscape and is the go-to person for competitor insight. Uses deep understanding of company strategy to inform product decisions.", markers: [] },
+          "Staff PM": { core: "Recognised internal authority; sets direction for best practices across teams and domains.", pm: "Recognized as the deepest domain expert within their product area, across multiple use cases and customer segments. Synthesizes quantitative and qualitative data to identify patterns and opportunities that individual teams might miss. Defines and tracks success metrics across their domain. Thinks proactively about competitor insight to uplevel team thinking. Prepares strategic options including considerations across wider product areas.", markers: [] },
+          "Principal PM": { core: "Recognised as a top-level expert within the organisation; defines technical or functional direction in their area of specialisation.", pm: "Talks to customers across target segments and a broad range of use cases, always looking for deeper insights and how those relate to each other. Uses data/metrics to shape company strategy. Proactively proposes and influences success metrics and KPIs at company level. Socializes and helps establish company-wide KPIs. Identifies sustainable competitive advantages across use cases.", markers: [] }
+        }
+      },
+      {
+        name: "Execution & Autonomy",
+        description: "How independently and effectively you deliver end-to-end outcomes.",
+        levels: {
+          "Junior PM": { core: "Executes well-scoped tasks with support; begins showing independence.", pm: "Needs support to make strong scoping decisions. Understands GTM plans, pricing, and packaging approach. Needs support to consider the broader customer experience beyond their immediate area.", markers: [] },
+          "Intermediate PM": { core: "Delivers complex work independently; holds self accountable for outcomes.", pm: "Facilitates effective scoping sessions with the team. Ensures teams focus on scoping small. Collaborates with PMkt to define GTM plan. Defines new and existing customer feature onboarding. Effectively partners with Sales/CS to communicate product value.", markers: [] },
+          "Senior PM": { core: "Leads complex workstreams with high accountability and autonomy; removes blockers for others.", pm: "Challenges assumptions about what is actually needed and sharpens the team\'s thinking. An influential and early collaborator with GTM. Defines impactful onboarding. Very proactive with enablement. Partners with Sales/CS to expose full product value.", markers: [] },
+          "Staff PM": { core: "Executes strategic cross-team projects independently; consistently removes blockers systemically.", pm: "Drives execution of high-stakes, high-complexity initiatives across teams within their domain. Forms coherent think-big-start-small approaches. Owns GTM strategy for their domain\'s significant releases. Removes systemic blockers that span team boundaries.", markers: [] },
+          "Principal PM": { core: "Drives critical programs autonomously across multiple teams or domains; removes systemic blockers and champions scalable solutions.", pm: "Works across multiple teams forming coherent approaches. Shapes and advances GTM for significant product releases. Effectively positions the product in relation to existing customers\' IT landscape and competing products. Pro-actively drives internal enablement/documentation.", markers: [] }
+        }
+      },
+      {
+        name: "Quality of Work",
+        description: "The standard and consistency of your deliverables.",
+        levels: {
+          "Junior PM": { core: "Gets things working; improving structure, clarity, and consistency.", pm: "Needs guidance to deliver outcomes at a project level. Develops an understanding of technical architecture and tradeoffs. Contributes to framing the right UX goals. Relies on support from experts to balance trade-offs.", markers: [] },
+          "Intermediate PM": { core: "Produces high-quality deliverables with attention to detail and standards.", pm: "Can demonstrate meaningful impact to customers and business. Has good understanding of what is technically possible with what level of effort. Knows when to prioritize UX effort. New developments maintain or enhance product coherence.", markers: [] },
+          "Senior PM": { core: "Consistently elevates quality standards; sets benchmarks and models excellence.", pm: "Consistently delivers meaningful impact. Delivers impact at strategy level (aggregate of multiple projects). Shapes technical and UX discussions and challenges the team to deliver best outcomes in the most efficient way.", markers: [] },
+          "Staff PM": { core: "Scales quality standards across multiple teams and programs.", pm: "Drives significant, measurable business impact within their domain across multiple teams. Identifies and resolves technical and UX challenges that span team boundaries. Balances proven approaches with calculated bets on new technologies or methods.", markers: [] },
+          "Principal PM": { core: "Sets quality benchmarks within the discipline; ensures sustainable standards are scaled across teams through tools, reviews, and enablement.", pm: "Motivates multiple teams to deliver significant impact to customers and business. Evangelizes the importance of coherent product experience and brings convincing evidence to strengthen the case.", markers: [] }
+        }
+      },
+      {
+        name: "Learning Agility & Feedback",
+        description: "How quickly you learn, adapt, and help others grow through feedback.",
+        levels: {
+          "Junior PM": { core: "Learns quickly when exposed to new tools, processes, or contexts. Open to receiving and applying feedback with guidance.", pm: "Demonstrates curiosity, openness, and the ability to adapt approaches in response to feedback and changing priorities. Contributes new ideas and suggestions for innovative approaches within their product area.", markers: [] },
+          "Intermediate PM": { core: "Seeks, gives, and incorporates feedback to improve self and others. Learns new skills efficiently; applies them to deliver stronger outcomes.", pm: "Able to adapt and pivot own approach in response to challenges, feedback, and changing priorities. With light support, drives change/transformation in their product area and aligns key stakeholders to new visions.", markers: [] },
+          "Senior PM": { core: "Gives impactful, developmental feedback; builds feedback culture within the team. Continuously expands expertise and shares insights with peers.", pm: "Able to instigate and drive change in response to challenges and feedback. Understands the impact of transformation and proactively devises communication strategies. Actively embraces a growth mindset. Influences and helps advance PM organization maturity.", markers: [] },
+          "Staff PM": { core: "Embeds feedback culture across multiple teams; models vulnerability and continuous growth. Integrates new knowledge into frameworks that benefit multiple teams.", pm: "Drives transformation within their domain, communicating a clear vision and building commitment across teams. Coaches PMs in their area on product craft, discovery methods, and stakeholder management. Models continuous learning by going deep on emerging practices.", markers: [] },
+          "Principal PM": { core: "Cultivates a culture of feedback; mentors senior ICs and cross-functional peers through thought leadership. Shapes organisational learning practices; promotes mastery across the company.", pm: "Proactively seeks out opportunities to enact change, communicating vision and driving commitment amongst leaders. Empowers others to adopt a growth mindset. Advances the maturity level of the Product Management function as a whole.", markers: [] }
+        }
+      }
+    ]
+  },
+  {
+    category: "People & Collaboration",
+    dimensions: [
+      {
+        name: "Team Partnership & Mentorship",
+        description: "How you collaborate with and develop others.",
+        levels: {
+          "Junior PM": { core: "Contributes in team rituals and workflows; works well with direct teammates. Learns from others and asks questions; motivated to grow.", pm: "Typically supports the manager on wider transformation and change strategies. Begins building relationships across the product team.", markers: [] },
+          "Intermediate PM": { core: "Collaborates effectively across teams; navigates interpersonal dynamics. Begins mentoring junior teammates; shares learnings and supports development.", pm: "Proactively generates ideas and makes suggestions. Supports multiple stakeholders across the group, helping to drive alignment. Begins coaching junior PMs on product craft.", markers: [] },
+          "Senior PM": { core: "Facilitates high-performing team dynamics; often the go-to for alignment and collaboration. Coaches peers and emerging talent; actively raises others.", pm: "Understands the impact of change/transformation and proactively devises communication strategies. Actively embraces a growth mindset and works to solve challenges. Mentors PMs and helps them develop product craft and stakeholder skills.", markers: [] },
+          "Staff PM": { core: "Operates as a collaboration anchor across teams, often an informal leader. Champions development programs across teams.", pm: "Acts as the collaboration hub within their domain, ensuring teams work cohesively toward shared outcomes. Coaches and develops PMs within their domain on product strategy, discovery, and execution. Actively builds the next generation of Senior PMs.", markers: [] },
+          "Principal PM": { core: "Collaborates across departments as a trusted expert; influences decisions at the org level. Develops others by mentoring senior peers and building internal networks.", pm: "Empowers and leads teams to drive complex transformation across broad product areas. Demonstrates a willingness to experiment, flex, and adapt, empowering others to adopt a similar growth mindset. Builds PM leadership capacity across the organization.", markers: [] }
+        }
+      },
+      {
+        name: "Communication",
+        description: "How clearly and effectively you communicate across audiences.",
+        levels: {
+          "Junior PM": { core: "Communicates progress and blockers with support; learning to express clearly. Begins to listen actively and adapt tone.", pm: "Articulates what problem they are working on and why it matters. Begins adapting communication for different audiences (engineering vs. design vs. stakeholders) with guidance. Learns to frame discussions in outcome terms rather than feature terms.", markers: [] },
+          "Intermediate PM": { core: "Communicates with clarity and structure across peers and stakeholders. Builds rapport through empathy and inclusivity.", pm: "Crafts clear product narratives that connect features to customer outcomes. Adapts messaging effectively for engineering, design, Sales, and CS. Partners with Sales/CS to communicate product value. Presents data with a clear narrative and recommendation.", markers: [] },
+          "Senior PM": { core: "Influences through clear, strategic communication; aligns diverse stakeholders. Builds trust by listening deeply and addressing tensions constructively.", pm: "Tells the product story with clarity and conviction across all audiences. Positions the product effectively against competitors. Drives GTM communication ensuring product decisions and their rationale cascade to all stakeholders. Navigates difficult conversations about deprioritization with empathy and transparency.", markers: [] },
+          "Staff PM": { core: "Shapes communication strategies that align multi-team efforts and organisational goals. Creates open channels for dialogue and inclusive communication.", pm: "Shapes product narratives that align multiple teams within their domain. Positions their domain\'s products effectively in the competitive landscape. Drives enablement and documentation to ensure the product has the best chance of market success.", markers: [] },
+          "Principal PM": { core: "Crafts compelling narratives that shape direction and inspire alignment across technical and non-technical audiences. Resolves high-stakes conflicts through trust and collaboration.", pm: "Crafts compelling product narratives that shape company direction. Positions the entire product portfolio in relation to the ecosystem. Ensures product communication cascades effectively throughout the organization at all levels.", markers: [] }
+        }
+      },
+      {
+        name: "Alignment to Values",
+        description: "How consistently you embody and promote company values.",
+        levels: {
+          "Junior PM": { core: "Demonstrates awareness of company values and begins incorporating them into daily work.", pm: "Begins to understand the ethical implications of product decisions. Learns to balance stakeholder requests with genuine user needs.", markers: [] },
+          "Intermediate PM": { core: "Consistently applies company values in decision-making and peer collaboration. Positively influences the team by modelling respectful and values-based behaviours.", pm: "Navigates tensions between user value and business value with transparency. Considers the impact of product decisions on different user segments, including edge cases.", markers: [] },
+          "Senior PM": { core: "Actively promotes values through actions and decisions; holds self accountable as a role model. Challenges behaviours that conflict with values, reinforcing standards for the team.", pm: "Champions ethical product practices within their area. Challenges dark patterns or manipulative design choices. Ensures product decisions balance growth metrics with user trust and long-term product integrity.", markers: [] },
+          "Staff PM": { core: "Embeds values into cross-team initiatives, ensuring alignment between outcomes and organisational principles. Acts as a trusted cultural ambassador.", pm: "Ensures product decisions within their domain consistently reflect company values, even under pressure to prioritize short-term metrics over long-term user trust and product integrity.", markers: [] },
+          "Principal PM": { core: "Consistently role models company values across functions, setting behavioural standards for senior peers and teams. Ensures that values guide high-stakes decisions, shaping culture and influencing organisational priorities.", pm: "Sets the standard for ethical product practices across the organization. Ensures product strategy balances business growth with user trust, privacy, and long-term sustainability.", markers: [] }
+        }
+      }
+    ]
+  },
+  {
+    category: "Strategic Contribution",
+    dimensions: [
+      {
+        name: "Strategic Thinking",
+        description: "How you connect execution to long-term strategy and vision.",
+        levels: {
+          "Junior PM": { core: "Aware of team goals; learning to connect tasks to outcomes.", pm: "Has an understanding of company goals and strategy. Convincingly articulates how their work contributes to the wider strategy. Seeks to understand product area strategy.", markers: [] },
+          "Intermediate PM": { core: "Understands strategy; aligns work and ideas with broader context.", pm: "Proactively links how product development in their area concretely contributes to overall company goals. Contributes pro-actively to the product strategy. Shapes the product area mid-term strategy with manager support.", markers: [] },
+          "Senior PM": { core: "Shapes team direction; connects daily work with long-term strategy.", pm: "Leverages a deep and internalized understanding of company goals and strategy to inform product decisions. Prepares strategic options and drives the decision-making process. Can create/clarify strategy within ambiguous areas with limited guidance.", markers: [] },
+          "Staff PM": { core: "Defines and connects tactical execution across teams to organisational long-term strategies.", pm: "Translates company goals into a clear, actionable strategy for their domain. Creates and clarifies strategy within highly ambiguous areas of their domain without guidance. Prepares strategic options that account for domain-level trade-offs and cross-team dependencies. Influences at engine level.", markers: [] },
+          "Principal PM": { core: "Aligns personal and cross-functional initiatives with organisational strategy; ensures initiatives deliver enterprise value.", pm: "Takes the company goals and strategy and uses these to define key focus areas and elevate the product organization. Prepares strategic options including considerations across the wider product areas, and drives the decision-making process at engine and company level.", markers: [] }
+        }
+      },
+      {
+        name: "Decision-Making",
+        description: "How you make and own decisions under complexity and trade-offs.",
+        levels: {
+          "Junior PM": { core: "Makes low-risk decisions with support; learning how to weigh trade-offs.", pm: "Begins to understand the trade-offs between scope, timeline, and quality. Relies on manager guidance for prioritization decisions. Starts learning when to escalate vs. decide independently.", markers: [] },
+          "Intermediate PM": { core: "Balances speed and judgment; makes solid, context-aware decisions.", pm: "Makes sound prioritization decisions within their product area. Weighs user value against business value when scoping features. Understands build vs. buy trade-offs for their domain. Balances short-term adoption needs with long-term product coherence.", markers: [] },
+          "Senior PM": { core: "Makes informed, often high-stakes decisions; weighs trade-offs across multiple dimensions.", pm: "Makes confident prioritization decisions across complex, multi-stakeholder contexts. Balances scope vs. timeline vs. quality with clear rationale. Champions data-informed decisions while knowing when to trust product intuition. Owns the decision and its outcomes.", markers: [] },
+          "Staff PM": { core: "Makes cross-team and cross-functional decisions; considers broader organisational outcomes.", pm: "Makes high-stakes product decisions within their domain with significant business implications. Balances competing priorities across teams in their area. Navigates build vs. buy vs. partner decisions with deep domain context. Considers second-order effects on adjacent domains.", markers: [] },
+          "Principal PM": { core: "Makes critical decisions with significant technical or business implications; balances speed, risk, and long-term sustainability.", pm: "Makes high-stakes product and portfolio decisions that shape the company direction. Balances growth, risk, and long-term sustainability across the product organization. Drives the decision-making process at engine and company level with conviction and clarity.", markers: [] }
+        }
+      },
+      {
+        name: "Innovation & Best Practices",
+        description: "How you improve ways of working and drive creative solutions.",
+        levels: {
+          "Junior PM": { core: "Learns and applies existing best practices; contributes incremental improvements. Approaches problems with curiosity.", pm: "Starts applying product frameworks and tools (discovery, prioritization). Approaches product challenges with curiosity and begins experimenting with user research and hypothesis testing.", markers: [] },
+          "Intermediate PM": { core: "Improves team tools/processes; adapts and evolves ways of working. Demonstrates creative problem-solving within the team.", pm: "Comfortable with a range of product frameworks (discovery, prioritization, experimentation). Runs experiments and validates assumptions with users before committing to solutions. Focuses on the right problem before jumping to solutions.", markers: [] },
+          "Senior PM": { core: "Drives continuous improvement; introduces and scales best practices across functions. Tackles complex problems with structured creativity.", pm: "Deeply versed in which tools/frameworks to use with the right level of pragmatism. Proposes product bets based on market insights and validated hypotheses. Champions experimentation culture (hypothesis-driven development, rapid prototyping) within their product area.", markers: [] },
+          "Staff PM": { core: "Creates frameworks and standards that scale innovation across multiple teams. Applies creative problem-solving to cross-team challenges.", pm: "Coaches PMs in their domain on product frameworks and experimentation methodology. Identifies opportunities for product innovation within their domain. Creates reusable playbooks from patterns across teams. Drives a culture of hypothesis-driven development.", markers: [] },
+          "Principal PM": { core: "Defines and evolves best practices across functions; drives systemic innovation. Recognised for creative problem-solving that addresses organisation-wide challenges.", pm: "Coaches the product organization on frameworks with the right degree of adaptation and customization. Identifies transformative product opportunities at company level. Advances the PM function\'s experimentation and innovation maturity. Shapes the culture of product innovation across the organization.", markers: [] }
+        }
+      }
+    ]
+  },
+  {
+    category: "Potential Misalignments",
+    dimensions: [
+      {
+        name: "Ownership",
+        description: "Risk of under- or over-owning outcomes.",
+        levels: {
+          "Junior PM": { core: "May over-rely on direction or task assignments; avoids taking initiative for full outcomes. Can miss follow-through or assume others are tracking progress.", pm: "May own assigned features but not the customer outcomes they are supposed to drive. May confuse completing user stories with delivering value to users.", markers: [] },
+          "Intermediate PM": { core: "May defer ownership when under pressure or ambiguity increases. Might escalate too quickly without assessing what can be solved independently.", pm: "May own the roadmap but not the business outcomes. May avoid taking ownership of GTM success or customer adoption, treating these as someone else\'s responsibility.", markers: [] },
+          "Senior PM": { core: "Can be overly hands-on, leading to bottlenecks or micromanagement. Struggles to empower others or build sustainable ownership across the team.", pm: "May own too much of the execution detail instead of empowering the cross-functional team. May struggle to delegate product decisions to other PMs while maintaining product coherence.", markers: [] },
+          "Staff PM": { core: "May overcommit without evaluating leverage; risks becoming a single point of failure.", pm: "May try to own all decisions within their domain rather than building ownership capacity in the PMs they mentor. Risks becoming the bottleneck for cross-team product alignment.", markers: [] },
+          "Principal PM": { core: "May focus too narrowly on domain outcomes and underinvest in aligning with broader organisational goals. May be reluctant to step outside expertise when broader leadership is needed.", pm: "May own the product vision but lose connection to execution reality. May focus on strategic ownership while neglecting to ensure other PMs have clear ownership of their product areas.", markers: [] }
+        }
+      },
+      {
+        name: "Initiative",
+        description: "Risk of being reactive rather than proactive.",
+        levels: {
+          "Junior PM": { core: "May wait to be asked or assigned; unsure when or how to speak up. Reluctant to suggest improvements or challenge norms.", pm: "May wait for customer feature requests instead of proactively identifying problems worth solving. May rely on the manager to set the discovery agenda.", markers: [] },
+          "Intermediate PM": { core: "Reactive rather than proactive; may see issues but not take the first step to solve. Hesitates to challenge existing processes.", pm: "May react to competitor moves rather than proactively shaping the product direction. May default to building what stakeholders ask for rather than challenging the problem framing.", markers: [] },
+          "Senior PM": { core: "Focused on delivery over long-term improvement. May deprioritize exploration or innovation in favor of what is urgent or familiar.", pm: "May over-index on shipping features at the expense of strategic discovery. May deprioritize market research and competitive analysis when delivery pressure increases.", markers: [] },
+          "Staff PM": { core: "May prioritize urgent needs over strategic change; risks incrementalism.", pm: "May focus on optimizing their domain rather than identifying transformative opportunities within it. May avoid proposing bold product bets in favor of safer incremental improvements.", markers: [] },
+          "Principal PM": { core: "May prioritise refinement of existing systems over initiating strategic cross-functional improvements. May hesitate to challenge organisational norms.", pm: "May refine existing product strategy rather than challenging fundamental assumptions. May avoid disrupting successful product lines even when market signals suggest the need for transformation.", markers: [] }
+        }
+      },
+      {
+        name: "Scope Awareness",
+        description: "Risk of misjudging boundaries of influence.",
+        levels: {
+          "Junior PM": { core: "May work in isolation, unaware of cross-functional implications. Focused too narrowly on immediate tasks.", pm: "May focus exclusively on their feature area without understanding how it impacts adjacent product areas or the overall user journey.", markers: [] },
+          "Intermediate PM": { core: "May miss upstream/downstream dependencies. Assumes alignment without validating with all stakeholders.", pm: "May overlook how product decisions affect Sales enablement, CS workflows, or Marketing positioning. May assume alignment with engineering on scope without explicit validation.", markers: [] },
+          "Senior PM": { core: "May overextend into areas beyond remit, causing friction. Can misjudge where to influence vs where to support.", pm: "May overextend into engineering decisions without securing buy-in from the tech lead. May try to influence adjacent product areas without proper stakeholder alignment.", markers: [] },
+          "Staff PM": { core: "May expand influence without securing necessary partnerships; risks diluting focus.", pm: "May go too deep into their domain and miss dependencies with adjacent product areas or platform considerations. May focus on domain excellence while ignoring cross-product integration needs.", markers: [] },
+          "Principal PM": { core: "May overlook upstream/downstream impact of domain decisions; risks operating in a silo.", pm: "May focus on product strategy without sufficient integration with go-to-market, engineering platform, or customer success strategies. May underestimate the organizational impact of product decisions.", markers: [] }
+        }
+      },
+      {
+        name: "Feedback & Communication",
+        description: "Risk of communication gaps or poor feedback habits.",
+        levels: {
+          "Junior PM": { core: "May take feedback personally or avoid asking for it. Struggles to express blockers or needs clearly.", pm: "May frame product discussions in feature terms rather than outcome terms. May struggle to communicate the \'why\' behind product decisions to the cross-functional team.", markers: [] },
+          "Intermediate PM": { core: "May give vague or overly cautious feedback. Can assume clarity instead of confirming shared understanding.", pm: "May present data without a clear product narrative or recommendation. May avoid giving direct feedback to engineering on scope trade-offs or quality concerns.", markers: [] },
+          "Senior PM": { core: "Can be too direct or infrequent with feedback. Risk of communication gaps when context is not shared across layers.", pm: "May under-communicate strategic product context to the team while over-communicating tactical details. May avoid difficult conversations about roadmap deprioritization with stakeholders.", markers: [] },
+          "Staff PM": { core: "May broadcast without dialogue; risks gaps in shared context and understanding.", pm: "May communicate product vision without ensuring teams truly understand the strategy and their role in it. May give feedback on product craft but neglect feedback on stakeholder management and leadership skills.", markers: [] },
+          "Principal PM": { core: "May assume expertise implies alignment, resulting in missed communication gaps. Feedback may be overly technical or lack strategic framing.", pm: "May communicate product strategy at a high level but fail to ensure the message cascades effectively to all product teams. May frame feedback around product outcomes without addressing PM craft and process improvements.", markers: [] }
+        }
+      },
+      {
+        name: "Quality & Detail",
+        description: "Risk of imbalance between speed and thoroughness.",
+        levels: {
+          "Junior PM": { core: "May prioritize speed over quality. Lacks awareness of impact on others or end users.", pm: "May ship features without validating the problem with users first. May skip user research or data analysis to move faster on delivery.", markers: [] },
+          "Intermediate PM": { core: "Sometimes sacrifices clarity or scalability for quick wins. Needs reminders to check for long-term maintainability.", pm: "May over-spec product requirements before testing assumptions with users. May focus on feature completeness at the expense of iteration speed and learning velocity.", markers: [] },
+          "Senior PM": { core: "May overlook foundational issues while focusing on strategic initiatives. Risks missing detail when delegating or scaling processes.", pm: "May push for ambitious product bets without sufficient user validation. May sacrifice UX quality for shipping speed when under delivery pressure.", markers: [] },
+          "Staff PM": { core: "Risks shortcuts in scalable processes while scaling impact.", pm: "May prioritize shipping across their domain at the expense of deep product quality in each area. May apply the same level of rigor to all product initiatives rather than calibrating discovery effort to expected impact.", markers: [] },
+          "Principal PM": { core: "May over-engineer solutions at the expense of timely delivery, or rush to deliver quickly at the expense of long-term quality.", pm: "May over-invest in strategic product planning and frameworks at the expense of shipping. May lose touch with product quality details while focused on organizational-level initiatives.", markers: [] }
+        }
+      },
+      {
+        name: "Mentorship & Influence",
+        description: "Risk of under-leveraging your ability to grow others.",
+        levels: {
+          "Junior PM": { core: "May depend too much on mentors for direction. Does not recognize their own ability to support peers.", pm: "May not recognize they can help teammates develop product thinking skills. May focus entirely on their own product learning without sharing customer insights or market knowledge.", markers: [] },
+          "Intermediate PM": { core: "May miss opportunities to mentor or lift others. Focuses on their own growth more than team growth.", pm: "May focus on building own product expertise without helping junior PMs develop their discovery and stakeholder skills. May hoard customer insights or competitive intelligence rather than sharing broadly.", markers: [] },
+          "Senior PM": { core: "May assume visibility equals influence. Risks creating dependence instead of building capacity in others.", pm: "May mentor by providing product answers rather than coaching others through the discovery process. May inadvertently create dependency on their product judgment rather than developing it in other PMs.", markers: [] },
+          "Staff PM": { core: "May mentor select individuals but neglect broader leadership development needs.", pm: "May focus mentoring on product craft skills while neglecting strategic thinking and stakeholder management development in the PMs they coach. May not invest enough in building the next generation of Senior PMs.", markers: [] },
+          "Principal PM": { core: "May focus mentoring on specialist growth alone, under-leveraging influence to foster strategic leadership across the organization.", pm: "May focus on advancing product excellence while underinvesting in building PM leadership capacity across the organization. May mentor on what to think about product rather than how to think about product.", markers: [] }
+        }
+      }
+    ]
+  }
+];
+
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  mode: null,
+  name: "",
+  currentLevel: null,
+  targetLevel: null,
+  currentDimIndex: 0, // global dimension index (0-19)
+  selections: {},     // key: "catIdx-dimIdx", value: levelIdx (number)
+  notes: {},          // key: "catIdx-dimIdx", value: string
+  contextAnswers: {}, // key: "q0", "q1", etc., value: string
+  storageAvailable: false
+};
+
+// ============================================================
+// HELPERS
+// ============================================================
+function getAllDimensions() {
+  const dims = [];
+  CAREER_LADDER.forEach((cat, ci) => {
+    cat.dimensions.forEach((dim, di) => {
+      dims.push({ catIdx: ci, dimIdx: di, category: cat.category, ...dim });
+    });
+  });
+  return dims;
+}
+
+const ALL_DIMS = getAllDimensions();
+const TOTAL_DIMS = ALL_DIMS.length;
+
+function getEvaluatedCount() {
+  return Object.keys(state.selections).length;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1500);
+}
+
+// ============================================================
+// STORAGE
+// ============================================================
+function initStorage() {
+  try {
+    const key = '__test__';
+    localStorage.setItem(key, '1');
+    localStorage.removeItem(key);
+    state.storageAvailable = true;
+  } catch {
+    state.storageAvailable = false;
+    document.getElementById('storage-banner').style.display = 'flex';
+  }
+}
+
+function getStorageKey() {
+  return state.mode === 'ic' ? 'pm-eval-ic' : 'pm-eval-mgr';
+}
+
+function saveState() {
+  if (!state.storageAvailable || !state.mode) return;
+  try {
+    localStorage.setItem(getStorageKey(), JSON.stringify(state));
+    showToast('Progress saved');
+  } catch {}
+}
+
+function loadState() {
+  if (!state.storageAvailable) return false;
+  for (const key of ['pm-eval-ic', 'pm-eval-mgr']) {
+    const raw = localStorage.getItem(key);
+    if (raw) {
+      try {
+        const saved = JSON.parse(raw);
+        Object.assign(state, saved);
+        return true;
+      } catch {}
+    }
+  }
+  return false;
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const screen = document.getElementById(id);
+  screen.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const heading = screen.querySelector('h1,h2,[tabindex="-1"]');
+  if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }); }
+}
+
+function selectMode(mode) {
+  state.mode = mode;
+  renderSetup();
+  showScreen('screen-setup');
+}
+
+function renderSetup() {
+  const form = document.getElementById('setup-form');
+  const isManager = state.mode === 'manager';
+  document.getElementById('setup-title').textContent = isManager ? 'Manager Assessment Setup' : 'Self-Assessment Setup';
+
+  let html = `
+    <div class="form-group">
+      <label for="input-name">${isManager ? "Your report's name" : "Your name"}</label>
+      <input type="text" id="input-name" placeholder="Enter name" value="${state.name}">
+    </div>
+  `;
+
+  if (isManager) {
+    html += `
+      <fieldset class="form-group" style="border:none;padding:0">
+        <legend style="font-weight:500;margin-bottom:6px;color:var(--gray-700);font-size:.9rem">Do you know their current level?</legend>
+        <div class="toggle-row" role="group" aria-label="Current level known">
+          <button type="button" class="toggle-btn ${state.currentLevel !== null ? 'active' : ''}" aria-pressed="${state.currentLevel !== null}" onclick="toggleLevelKnown('current', true, this)">Yes</button>
+          <button type="button" class="toggle-btn ${state.currentLevel === null ? 'active' : ''}" aria-pressed="${state.currentLevel === null}" onclick="toggleLevelKnown('current', false, this)">No</button>
+        </div>
+        <div class="conditional-field" id="current-level-field" style="display:${state.currentLevel !== null ? 'block' : 'none'}">
+          <label for="select-current-level" class="sr-only">Current level</label>
+          <select id="select-current-level">
+            ${LEVELS.map(l => `<option value="${l}" ${state.currentLevel === l ? 'selected' : ''}>${l}</option>`).join('')}
+          </select>
+        </div>
+      </fieldset>
+      <fieldset class="form-group" style="border:none;padding:0">
+        <legend style="font-weight:500;margin-bottom:6px;color:var(--gray-700);font-size:.9rem">Do you know their target level?</legend>
+        <div class="toggle-row" role="group" aria-label="Target level known">
+          <button type="button" class="toggle-btn ${state.targetLevel !== null ? 'active' : ''}" aria-pressed="${state.targetLevel !== null}" onclick="toggleLevelKnown('target', true, this)">Yes</button>
+          <button type="button" class="toggle-btn ${state.targetLevel === null ? 'active' : ''}" aria-pressed="${state.targetLevel === null}" onclick="toggleLevelKnown('target', false, this)">No</button>
+        </div>
+        <div class="conditional-field" id="target-level-field" style="display:${state.targetLevel !== null ? 'block' : 'none'}">
+          <label for="select-target-level" class="sr-only">Target level</label>
+          <select id="select-target-level">
+            ${LEVELS.map(l => `<option value="${l}" ${state.targetLevel === l ? 'selected' : ''}>${l}</option>`).join('')}
+          </select>
+        </div>
+      </fieldset>
+    `;
+  }
+
+  form.innerHTML = html;
+}
+
+function toggleLevelKnown(type, known, el) {
+  const row = el.parentElement;
+  row.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  const field = document.getElementById(`${type}-level-field`);
+  if (known) {
+    field.style.display = 'block';
+    if (type === 'current') state.currentLevel = LEVELS[0];
+    else state.targetLevel = LEVELS[0];
+  } else {
+    field.style.display = 'none';
+    if (type === 'current') state.currentLevel = null;
+    else state.targetLevel = null;
+  }
+}
+
+function startEvaluation() {
+  const name = document.getElementById('input-name').value.trim();
+  if (!name) {
+    const inp = document.getElementById('input-name');
+    inp.style.borderColor = 'var(--red-500)';
+    let err = document.getElementById('input-name-error');
+    if (!err) { err = document.createElement('span'); err.id = 'input-name-error'; err.role = 'alert'; err.style.cssText = 'color:var(--red-500);font-size:.8rem;margin-top:4px;display:block'; err.textContent = 'Name is required'; inp.parentNode.appendChild(err); inp.setAttribute('aria-describedby', 'input-name-error'); }
+    inp.focus();
+    return;
+  }
+  state.name = name;
+
+  if (state.mode === 'manager') {
+    const currentSel = document.getElementById('select-current-level');
+    const targetSel = document.getElementById('select-target-level');
+    if (currentSel && document.getElementById('current-level-field').style.display !== 'none') {
+      state.currentLevel = currentSel.value;
+    }
+    if (targetSel && document.getElementById('target-level-field').style.display !== 'none') {
+      state.targetLevel = targetSel.value;
+    }
+  }
+
+  saveState();
+  renderEvaluation();
+  showScreen('screen-eval');
+}
+
+// ============================================================
+// EVALUATION — WIZARD MODE
+// ============================================================
+function updateProgressBar() {
+  const count = getEvaluatedCount();
+  const pct = Math.round((count / TOTAL_DIMS) * 100);
+  const bar = document.getElementById('progress-bar');
+  bar.style.width = pct + '%';
+  bar.setAttribute('aria-valuenow', pct);
+  document.getElementById('progress-count').textContent = count;
+  document.getElementById('progress-percent').textContent = pct + '%';
+}
+
+function renderStepper() {
+  const shortNames = ["Impact", "Craft", "People", "Strategy", "Misalign."];
+  const currentDim = ALL_DIMS[state.currentDimIndex];
+  let html = '<div class="stepper">';
+  CAREER_LADDER.forEach((cat, i) => {
+    if (i > 0) html += '<div class="step-line"></div>';
+    const isActive = i === currentDim.catIdx;
+    const catDims = cat.dimensions;
+    const allDone = catDims.every((_, di) => state.selections.hasOwnProperty(`${i}-${di}`));
+    const cls = allDone ? 'completed' : (isActive ? 'active' : '');
+    // Click to go to first dim of that category
+    const firstGlobal = ALL_DIMS.findIndex(d => d.catIdx === i);
+    html += `<button type="button" class="step-col" onclick="goToDimension(${firstGlobal})" aria-label="${cat.category}${allDone ? ', completed' : ''}" ${isActive ? 'aria-current="step"' : ''}>
+      <div class="step-circle ${cls}">${allDone ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : (i + 1)}</div>
+      <div class="step-label ${isActive ? 'active' : ''}">${shortNames[i]}</div>
+    </button>`;
+  });
+  html += '</div>';
+  document.getElementById('eval-stepper').innerHTML = html;
+}
+
+function renderEvaluation() {
+  updateProgressBar();
+  renderStepper();
+
+  const dim = ALL_DIMS[state.currentDimIndex];
+  const selKey = `${dim.catIdx}-${dim.dimIdx}`;
+  const sel = state.selections[selKey];
+  let html = `<div class="dim-header">
+    <div class="dim-category">${dim.category}</div>
+    <h2>${dim.name}</h2>
+    <p class="dim-desc">${dim.description}</p>
+    <div class="dim-counter">${state.currentDimIndex + 1} of ${TOTAL_DIMS}</div>
+  </div>`;
+
+  {
+    LEVELS.forEach((level, levelIdx) => {
+      const data = dim.levels[level];
+      const isSelected = sel === levelIdx;
+      const isExpanded = isSelected;
+      const preview = data.core.split('.')[0] + '.';
+
+      html += `<div class="level-card ${isSelected ? 'selected' : ''} ${isExpanded ? 'expanded' : ''}" data-level="${levelIdx}" aria-expanded="${isExpanded}" onclick="toggleCard(${levelIdx})">
+        <div class="level-card-header">
+          <div class="left">
+            <span class="level-number">${levelIdx + 1}</span>
+            <span class="level-name">${level}</span>
+          </div>
+          <span class="level-preview">${preview}</span>
+          <span class="check-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="expand-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="level-card-body">
+          <div class="level-core">${data.core}</div>
+          ${data.pm ? `<div class="level-pm">
+            <div class="pm-label">PM Specific</div>
+            <div class="pm-content">${data.pm}</div>
+          </div>` : ''}
+          <button class="select-level-btn" onclick="event.stopPropagation();selectLevel(${levelIdx})">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            ${isSelected ? 'Selected' : 'Select this level'}
+          </button>
+          ${isSelected ? `<div class="note-area" onclick="event.stopPropagation()">
+            <textarea placeholder="${state.mode === 'manager' ? 'Give a concrete example you\'ve observed (optional)' : 'Give a concrete example that illustrates this level (optional)'}" oninput="saveNote(this.value)">${state.notes[selKey] || ''}</textarea>
+          </div>` : ''}
+        </div>
+      </div>`;
+    });
+  }
+
+  document.getElementById('eval-content').innerHTML = html;
+  document.getElementById('dim-position').textContent = `${state.currentDimIndex + 1} / ${TOTAL_DIMS}`;
+
+  // Nav buttons
+  document.getElementById('btn-prev').style.visibility = state.currentDimIndex === 0 ? 'hidden' : 'visible';
+  const isLast = state.currentDimIndex === TOTAL_DIMS - 1;
+  const nextBtn = document.getElementById('btn-next');
+  const hasSelection = state.selections.hasOwnProperty(selKey) && state.selections[selKey] !== null;
+  nextBtn.innerHTML = isLast ? 'Continue &rarr;' : 'Next &rarr;';
+  nextBtn.disabled = !hasSelection;
+}
+
+function toggleCard(levelIdx) {
+  const cards = document.querySelectorAll('.level-card');
+  const card = cards[levelIdx];
+  const wasExpanded = card.classList.contains('expanded');
+  card.classList.toggle('expanded');
+  card.setAttribute('aria-expanded', !wasExpanded);
+}
+
+function selectLevel(levelIdx) {
+  const dim = ALL_DIMS[state.currentDimIndex];
+  const key = `${dim.catIdx}-${dim.dimIdx}`;
+  if (state.selections[key] === levelIdx) {
+    delete state.selections[key];
+    delete state.notes[key];
+  } else {
+    state.selections[key] = levelIdx;
+  }
+  saveState();
+  renderEvaluation();
+  const cards = document.querySelectorAll('.level-card');
+  cards.forEach((c, i) => {
+    if (i === levelIdx) c.classList.add('expanded');
+    else c.classList.remove('expanded');
+  });
+}
+
+function saveNote(value) {
+  const dim = ALL_DIMS[state.currentDimIndex];
+  const key = `${dim.catIdx}-${dim.dimIdx}`;
+  if (value.trim()) {
+    state.notes[key] = value;
+  } else {
+    delete state.notes[key];
+  }
+  // Debounced save
+  clearTimeout(saveNote._timer);
+  saveNote._timer = setTimeout(() => saveState(), 500);
+}
+
+
+
+function goToDimension(idx) {
+  state.currentDimIndex = Math.max(0, Math.min(TOTAL_DIMS - 1, idx));
+  saveState();
+  renderEvaluation();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextDimension() {
+  const dim = ALL_DIMS[state.currentDimIndex];
+  const key = `${dim.catIdx}-${dim.dimIdx}`;
+  if (!state.selections.hasOwnProperty(key) || state.selections[key] === null) return;
+  if (state.currentDimIndex < TOTAL_DIMS - 1) {
+    state.currentDimIndex++;
+    saveState();
+    renderEvaluation();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    renderContextQuestions();
+    showScreen('screen-context');
+  }
+}
+
+function prevDimension() {
+  if (state.currentDimIndex > 0) {
+    state.currentDimIndex--;
+    saveState();
+    renderEvaluation();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function backToEval() {
+  renderContextQuestions();
+  showScreen('screen-context');
+}
+
+// ============================================================
+// CONTEXT QUESTIONS
+// ============================================================
+function getContextQuestions() {
+  const shared = [
+    { key: 'q0', label: 'What are you most proud of in the past 6 months?' },
+    { key: 'q1', label: 'What is the biggest challenge right now?' }
+  ];
+  if (state.mode === 'ic') {
+    return [...shared,
+      { key: 'q2', label: 'Where do you want to be in 12 months? What skills do you want to develop?' }
+    ];
+  } else {
+    return [...shared,
+      { key: 'q2', label: 'What growth opportunities can you create for this person?' },
+      { key: 'q3', label: 'What feedback have you been wanting to give but haven\'t yet?' }
+    ];
+  }
+}
+
+function renderContextQuestions() {
+  const questions = getContextQuestions();
+  const container = document.getElementById('context-questions');
+  container.innerHTML = questions.map(q => `
+    <div class="context-question">
+      <label for="${q.key}">${q.label}<span class="optional">optional</span></label>
+      <textarea id="${q.key}" placeholder="Your thoughts..." oninput="saveContextAnswer('${q.key}', this.value)">${state.contextAnswers[q.key] || ''}</textarea>
+    </div>
+  `).join('');
+}
+
+function saveContextAnswer(key, value) {
+  if (value.trim()) {
+    state.contextAnswers[key] = value;
+  } else {
+    delete state.contextAnswers[key];
+  }
+  clearTimeout(saveContextAnswer._timer);
+  saveContextAnswer._timer = setTimeout(() => saveState(), 500);
+}
+
+function submitContext() {
+  saveState();
+  renderResults();
+  showScreen('screen-results');
+}
+
+// ============================================================
+// RESULTS
+// ============================================================
+function computeResults() {
+  const dimensionScores = [];
+  const misalignments = [];
+
+  CAREER_LADDER.forEach((cat, catIdx) => {
+    cat.dimensions.forEach((dim, dimIdx) => {
+      const key = `${catIdx}-${dimIdx}`;
+      const sel = state.selections[key];
+      const skipped = !state.selections.hasOwnProperty(key) || sel === null;
+      const entry = {
+        category: cat.category,
+        categoryIdx: catIdx,
+        dimension: dim.name,
+        level: skipped ? null : sel + 1,
+        levelIdx: skipped ? null : sel,
+        levelName: skipped ? null : LEVELS[sel],
+        skipped
+      };
+      if (catIdx === 4) misalignments.push(entry);
+      else dimensionScores.push(entry);
+    });
+  });
+
+  const categoryAverages = SCORABLE_CATEGORIES.map(catIdx => {
+    const dims = dimensionScores.filter(d => d.categoryIdx === catIdx && !d.skipped);
+    if (dims.length === 0) return null;
+    return dims.reduce((sum, d) => sum + d.level, 0) / dims.length;
+  });
+
+  const evaluatedDims = dimensionScores.filter(d => !d.skipped);
+  const overallAvg = evaluatedDims.length > 0
+    ? evaluatedDims.reduce((sum, d) => sum + d.level, 0) / evaluatedDims.length
+    : 0;
+  const overallLevel = Math.round(overallAvg);
+  const overallLevelName = overallLevel > 0 ? LEVELS[overallLevel - 1] : 'N/A';
+
+  const scored = evaluatedDims.map(d => ({ ...d, delta: d.level - overallAvg }));
+  const strengthsSorted = [...scored].sort((a, b) => b.delta - a.delta || a.categoryIdx - b.categoryIdx);
+  const growthSorted = [...scored].sort((a, b) => a.delta - b.delta || a.categoryIdx - b.categoryIdx);
+
+  return { categoryAverages, dimensionScores, misalignments, overallLevel, overallLevelName, overallAvg, strengths: strengthsSorted.slice(0, 3), growthAreas: growthSorted.slice(0, 3) };
+}
+
+function renderProfileMap(categoryAverages) {
+  const catNames = ["Impact & Influence", "Craft Mastery & Performance", "People & Collaboration", "Strategic Contribution"];
+  const targetIdx = state.targetLevel ? LEVELS.indexOf(state.targetLevel) : null;
+
+  let html = '';
+  catNames.forEach((cat, i) => {
+    const avg = categoryAverages[i];
+    const isEvaluated = avg !== null;
+    const levelIdx = isEvaluated ? Math.round(avg) - 1 : -1;
+    const levelName = isEvaluated ? LEVELS[levelIdx] : 'Not evaluated';
+
+    html += `<div class="profile-map-row ${!isEvaluated ? 'not-evaluated' : ''}" role="group" aria-label="${cat}: ${levelName}">
+      <div class="profile-map-label">
+        <span>${cat}</span>
+        <span class="level-name">${levelName}</span>
+      </div>
+      <div class="profile-map-track">`;
+
+    LEVELS.forEach((lvl, li) => {
+      const isFilled = isEvaluated && li <= levelIdx;
+      const isCurrent = isEvaluated && li === levelIdx;
+      const hasTarget = targetIdx !== null && li === targetIdx;
+      html += `<div class="profile-map-segment ${isFilled ? 'filled' : 'empty'} ${isCurrent ? 'current' : ''}">
+        <span class="seg-label">${lvl.replace(' PM', '')}</span>
+        ${hasTarget ? '<div class="profile-map-target" title="Target level"></div>' : ''}
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  return html;
+}
+
+function renderResults() {
+  const results = computeResults();
+
+  // Hero — show level name, not numeric score
+  document.getElementById('result-hero').innerHTML = `
+    <div class="name">${state.mode === 'ic' ? 'Self-Assessment' : 'Manager Assessment'} for</div>
+    <div style="font-size:1.6rem;font-weight:700;margin-bottom:16px">${state.name}</div>
+    <div class="score-badge"><span class="score" style="font-size:1rem">${results.overallLevelName.replace(' PM', '')}</span></div>
+    <div class="level-title">Overall Profile: ${results.overallLevelName}</div>
+    <div class="score-detail">Based on ${results.dimensionScores.filter(d=>!d.skipped).length} evaluated dimensions</div>
+  `;
+
+  // Profile Map
+  document.getElementById('profile-map').innerHTML = renderProfileMap(results.categoryAverages);
+
+  // Strengths
+  document.getElementById('strengths-list').innerHTML = results.strengths.map(s =>
+    `<div class="result-item"><div class="dim-name">${s.dimension}</div><div class="dim-level">${s.category} — ${s.levelName}</div></div>`
+  ).join('');
+
+  // Growth
+  document.getElementById('growth-list').innerHTML = results.growthAreas.map(g =>
+    `<div class="result-item"><div class="dim-name">${g.dimension}</div><div class="dim-level">${g.category} — ${g.levelName}</div></div>`
+  ).join('');
+
+  // Misalignments
+  const mList = document.getElementById('misalignments-list');
+  const evalMisalignments = results.misalignments.filter(m => !m.skipped);
+  if (evalMisalignments.length === 0) {
+    mList.innerHTML = '<p style="color:var(--gray-400)">No misalignment dimensions were evaluated.</p>';
+  } else {
+    mList.innerHTML = evalMisalignments.map(m => {
+      const dim = CAREER_LADDER[4].dimensions.find(d => d.name === m.dimension);
+      const data = dim.levels[m.levelName];
+      return `<div class="misalignment-item">
+        <div class="dim-name">${m.dimension}</div>
+        <div class="pattern-level">${m.levelName} pattern</div>
+        <div class="pattern">${data.core}${data.pm ? '<br><br><span style="color:var(--gray-500);font-style:italic">[PM]' + data.pm + '</span>' : ''}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Detailed table
+  const table = document.getElementById('detailed-table');
+  const targetIdx = state.targetLevel ? LEVELS.indexOf(state.targetLevel) + 1 : null;
+  const hasGap = state.mode === 'manager' && targetIdx;
+
+  let thtml = `<thead><tr><th>Category</th><th>Dimension</th><th>Level</th>${hasGap ? '<th>Target</th><th>Gap</th>' : ''}</tr></thead><tbody>`;
+  const allScores = [...results.dimensionScores, ...results.misalignments];
+  allScores.forEach(s => {
+    let rowClass = '';
+    if (s.skipped) rowClass = 'skipped';
+    else if (hasGap && s.categoryIdx !== 4) {
+      const gap = s.level - targetIdx;
+      if (gap >= 0) rowClass = 'gap-green';
+      else if (gap === -1) rowClass = 'gap-orange';
+      else rowClass = 'gap-red';
+    }
+    const gapVal = hasGap && !s.skipped && s.categoryIdx !== 4 ? s.level - targetIdx : null;
+    thtml += `<tr class="${rowClass}">
+      <td>${s.category}</td><td>${s.dimension}</td><td>${s.skipped ? 'Skipped' : s.levelName}</td>
+      ${hasGap ? `<td>${s.categoryIdx !== 4 ? state.targetLevel : '—'}</td><td>${gapVal !== null ? (gapVal >= 0 ? '+' : '') + gapVal : '—'}</td>` : ''}
+    </tr>`;
+  });
+  thtml += '</tbody>';
+  table.innerHTML = thtml;
+
+  document.getElementById('export-fallback-container').innerHTML = '';
+
+  // Next Steps
+  const stepsEl = document.getElementById('next-steps-content');
+  if (state.mode === 'ic') {
+    stepsEl.innerHTML = `
+      <ol style="padding-left:20px;line-height:2;font-size:.9rem">
+        <li>Click <strong style="color:var(--la-yellow)">"Copy AI Pack"</strong> above to copy your full assessment to the clipboard</li>
+        <li>Open <a href="https://gemini.google.com" target="_blank" rel="noopener" style="color:var(--la-yellow)">Gemini</a> (or ChatGPT) and paste the content</li>
+        <li>Answer the 3-5 clarifying questions the AI will ask you</li>
+        <li>Save the AI analysis — it's your <strong>AI assessment report</strong></li>
+        <li>Also click <strong>"Download Report"</strong> to get your <strong>tool assessment report</strong></li>
+        <li>Send <strong>both reports</strong> (AI + tool) to your manager before your 1:1</li>
+      </ol>
+    `;
+  } else {
+    stepsEl.innerHTML = `
+      <ol style="padding-left:20px;line-height:2;font-size:.9rem">
+        <li>Click <strong style="color:var(--la-yellow)">"Copy AI Pack"</strong> above to copy your full assessment to the clipboard</li>
+        <li>Open <a href="https://gemini.google.com" target="_blank" rel="noopener" style="color:var(--la-yellow)">Gemini</a> (or ChatGPT) and paste the content</li>
+        <li>Answer the 3-5 clarifying questions the AI will ask you</li>
+        <li>Save the AI analysis — it's your <strong>manager assessment report</strong></li>
+        <li>Also click <strong>"Download Report"</strong> to get your <strong>tool assessment report</strong></li>
+        <li>Keep both reports for the 1:1 — compare with your IC's self-assessment to identify perception gaps</li>
+      </ol>
+    `;
+  }
+}
+
+// ============================================================
+// EXPORT
+// ============================================================
+function findDimension(catIdx, dimName) {
+  return CAREER_LADDER[catIdx].dimensions.find(d => d.name === dimName);
+}
+
+function generateReport() {
+  const results = computeResults();
+  const date = new Date().toISOString().slice(0, 10);
+  const mode = state.mode === 'ic' ? 'IC Self-Assessment' : 'Manager Assessment';
+
+  let md = `# PM Career Ladder — Assessment Report\n\n`;
+  md += `**Name:** ${state.name}\n**Mode:** ${mode}\n**Date:** ${date}\n**Overall Level:** ${results.overallLevelName} (${results.overallAvg.toFixed(1)}/5)\n`;
+  if (state.mode === 'manager') {
+    if (state.currentLevel) md += `**Current Level:** ${state.currentLevel}\n`;
+    if (state.targetLevel) md += `**Target Level:** ${state.targetLevel}\n`;
+  }
+
+  md += `\n---\n\n## Profile Summary\n\n| Category | Level |\n|----------|-------|\n`;
+  const catNames = ["Impact & Influence", "Craft Mastery & Performance", "People & Collaboration", "Strategic Contribution"];
+  results.categoryAverages.forEach((avg, i) => {
+    md += avg !== null ? `| ${catNames[i]} | ${avg.toFixed(1)} — ${LEVELS[Math.round(avg) - 1] || 'N/A'} |\n` : `| ${catNames[i]} | Not evaluated |\n`;
+  });
+
+  md += `\n## Top 3 Strengths\n\n`;
+  results.strengths.forEach((s, i) => { const d = findDimension(s.categoryIdx, s.dimension); md += `${i+1}. **${s.dimension}** (${s.category}) — ${s.levelName}: ${d.levels[s.levelName].core}\n`; });
+
+  md += `\n## Top 3 Growth Areas\n\n`;
+  results.growthAreas.forEach((g, i) => { const d = findDimension(g.categoryIdx, g.dimension); md += `${i+1}. **${g.dimension}** (${g.category}) — ${g.levelName}: ${d.levels[g.levelName].core}\n`; });
+
+  if (state.mode === 'manager' && state.targetLevel) {
+    const ti = LEVELS.indexOf(state.targetLevel) + 1;
+    md += `\n## Gap Analysis\n\n| Dimension | Assessment | Target | Gap |\n|-----------|-----------|--------|-----|\n`;
+    results.dimensionScores.filter(d => !d.skipped).forEach(d => { const gap = d.level - ti; md += `| ${d.dimension} | ${d.levelName} | ${state.targetLevel} | ${gap >= 0 ? '+' : ''}${gap} |\n`; });
+  }
+
+  md += `\n## Potential Misalignments\n\n| Dimension | Selected Pattern |\n|-----------|------------------|\n`;
+  results.misalignments.filter(m => !m.skipped).forEach(m => { const d = CAREER_LADDER[4].dimensions.find(x => x.name === m.dimension); md += `| ${m.dimension} | ${m.levelName}: ${d.levels[m.levelName].core} |\n`; });
+
+  // Context & Reflections
+  const questions = getContextQuestions();
+  const hasAnswers = questions.some(q => state.contextAnswers[q.key]);
+  if (hasAnswers) {
+    md += `\n## Context & Reflections\n\n`;
+    questions.forEach(q => {
+      if (state.contextAnswers[q.key]) {
+        md += `**${q.label}**\n> ${state.contextAnswers[q.key]}\n\n`;
+      }
+    });
+  }
+
+  md += `\n## Detailed Breakdown\n\n`;
+  CAREER_LADDER.forEach((cat, catIdx) => {
+    md += `### ${cat.category}\n\n`;
+    cat.dimensions.forEach((dim, dimIdx) => {
+      const key = `${catIdx}-${dimIdx}`;
+      const sel = state.selections[key];
+      const skipped = !state.selections.hasOwnProperty(key) || sel === null;
+      if (skipped) { md += `**${dim.name}** — *Not evaluated*\n\n`; }
+      else {
+        const ln = LEVELS[sel]; const d = dim.levels[ln];
+        md += `**${dim.name}** — ${ln}\n> Core: ${d.core}\n${d.pm ? '> PM: ' + d.pm + '\n' : ''}`;
+        const note = state.notes[key];
+        if (note) { md += `> **Example:** ${note}\n`; }
+        else { md += `> *(no supporting example provided)*\n`; }
+        md += '\n';
+      }
+    });
+  });
+  return md;
+}
+
+function generateAIPack() {
+  const results = computeResults();
+  const date = new Date().toISOString().slice(0, 10);
+  const mode = state.mode === 'ic' ? 'IC Self-Assessment' : 'Manager Assessment';
+
+  let text = `## CAREER LADDER FRAMEWORK\n\n`;
+  CAREER_LADDER.forEach(cat => {
+    text += `### ${cat.category}\n\n`;
+    cat.dimensions.forEach(dim => {
+      text += `#### ${dim.name}\n${dim.description}\n\n| Level | Core | PM-Specific |\n|-------|------|-------------|\n`;
+      LEVELS.forEach(level => { const d = dim.levels[level]; text += `| ${level} | ${d.core.replace(/\n/g, ' ')} | ${(d.pm || '—').replace(/\n/g, ' ')} |\n`; });
+      text += '\n';
+    });
+  });
+
+  text += `## EVALUATION RESULTS\n\n**Name:** ${state.name}\n**Mode:** ${mode}\n**Date:** ${date}\n**Overall Level:** ${results.overallLevelName} (${results.overallAvg.toFixed(1)}/5)\n\n`;
+  if (state.mode === 'manager') {
+    if (state.currentLevel) text += `**Current Level:** ${state.currentLevel}\n`;
+    if (state.targetLevel) text += `**Target Level:** ${state.targetLevel}\n`;
+    text += '\n';
+  }
+
+  text += `### Dimension-by-Dimension Results\n\n| Category | Dimension | Selected Level | Supporting Example |\n|----------|-----------|----------------|--------------------|\n`;
+  [...results.dimensionScores, ...results.misalignments].forEach(s => {
+    const key = `${s.categoryIdx}-${CAREER_LADDER[s.categoryIdx].dimensions.findIndex(d => d.name === s.dimension)}`;
+    const note = state.notes[key] || '—';
+    text += `| ${s.category} | ${s.dimension} | ${s.skipped ? 'Not evaluated' : s.levelName} | ${note.replace(/\n/g, ' ')} |\n`;
+  });
+
+  text += `\n### Top 3 Strengths\n`;
+  results.strengths.forEach((s, i) => { text += `${i+1}. ${s.dimension} (${s.category}) — ${s.levelName}\n`; });
+  text += `\n### Top 3 Growth Areas\n`;
+  results.growthAreas.forEach((g, i) => { text += `${i+1}. ${g.dimension} (${g.category}) — ${g.levelName}\n`; });
+
+  // Context answers
+  const questions = getContextQuestions();
+  const hasAnswers = questions.some(q => state.contextAnswers[q.key]);
+  if (hasAnswers) {
+    text += `\n### Context & Reflections\n\n`;
+    questions.forEach(q => {
+      if (state.contextAnswers[q.key]) {
+        text += `**${q.label}**\n${state.contextAnswers[q.key]}\n\n`;
+      }
+    });
+  }
+
+  text += `\n## PROMPT\n\nYou are an experienced VP of Product evaluating a Product Manager.\n\nAbove you'll find:\n1. The complete PM career ladder framework\n2. A ${mode.toLowerCase()} for ${state.name}, including level selections, supporting examples, and personal reflections\n\nBefore providing your analysis:\n- Ask me 3-5 clarifying questions about the context, team, and challenges this PM faces\n- Wait for my answers before proceeding\n\nThen provide:\n- Overall level assessment with justification\n- Top 3 strengths with evidence from the evaluation and examples provided\n- Top 3 development areas with specific, actionable recommendations\n- Any inconsistencies or blind spots you notice in the evaluation\n- Flag any dimensions where the self-rating seems misaligned with the supporting example\n`;
+
+  return text;
+}
+
+function downloadReport() {
+  const md = generateReport();
+  const blob = new Blob([md], { type: 'text/markdown' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `pm-assessment-${state.name.replace(/\s+/g, '-').toLowerCase()}-${new Date().toISOString().slice(0, 10)}.md`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+async function copyAIPack() {
+  const text = generateAIPack();
+  const btn = document.getElementById('btn-ai-pack');
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    setTimeout(() => { btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy AI Pack'; }, 2000);
+  } catch {
+    const container = document.getElementById('export-fallback-container');
+    container.innerHTML = `<div class="export-fallback">
+      <p style="font-size:.875rem;margin-bottom:8px">Press <strong>Ctrl+C</strong> (or Cmd+C) to copy:</p>
+      <textarea readonly>${text.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
+    </div>`;
+    container.querySelector('textarea').select();
+  }
+}
+
+// ============================================================
+// MODAL & START OVER
+// ============================================================
+let _modalTrigger = null;
+function showModal(title, message, onConfirm, confirmLabel) {
+  _modalTrigger = document.activeElement;
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-message').textContent = message;
+  const btn = document.getElementById('modal-confirm');
+  btn.textContent = confirmLabel || 'Confirm';
+  btn.onclick = () => { closeModal(); onConfirm(); };
+  document.getElementById('modal-overlay').classList.add('show');
+  document.getElementById('modal-cancel').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('show');
+  if (_modalTrigger) { _modalTrigger.focus(); _modalTrigger = null; }
+}
+
+document.addEventListener('keydown', (e) => {
+  const overlay = document.getElementById('modal-overlay');
+  if (!overlay.classList.contains('show')) return;
+  if (e.key === 'Escape') { closeModal(); return; }
+  if (e.key === 'Tab') {
+    const focusable = overlay.querySelectorAll('button');
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+
+function confirmStartOver() {
+  const count = getEvaluatedCount();
+  showModal(
+    'Start over?',
+    count > 0 ? `You'll lose your progress on ${count} evaluated dimension${count > 1 ? 's' : ''}.` : 'This will reset the current session.',
+    doStartOver,
+    'Erase & restart'
+  );
+}
+
+function doStartOver() {
+  if (state.storageAvailable) {
+    localStorage.removeItem('pm-eval-ic');
+    localStorage.removeItem('pm-eval-mgr');
+  }
+  state.mode = null;
+  state.name = "";
+  state.currentLevel = null;
+  state.targetLevel = null;
+  state.currentDimIndex = 0;
+  state.selections = {};
+  showScreen('screen-mode');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+(function init() {
+  initStorage();
+  if (loadState() && state.mode && state.name) {
+    renderSetup();
+    // Check if all dimensions evaluated — restore to results
+    const allEvaluated = ALL_DIMS.every(d => {
+      const key = `${d.catIdx}-${d.dimIdx}`;
+      return state.selections.hasOwnProperty(key) && state.selections[key] !== null;
+    });
+    if (allEvaluated && Object.keys(state.contextAnswers).length > 0) {
+      renderResults();
+      showScreen('screen-results');
+    } else if (allEvaluated) {
+      renderContextQuestions();
+      showScreen('screen-context');
+    } else {
+      renderEvaluation();
+      showScreen('screen-eval');
+    }
+  }
+})();
+</script>
+</body>
+</html>
