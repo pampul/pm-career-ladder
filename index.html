@@ -245,6 +245,12 @@ button:focus-visible,.btn:focus-visible,.mode-card:focus-visible,.level-card:foc
   .misalignment-item,.result-card{break-inside:avoid;page-break-inside:avoid}
   .result-card{box-shadow:none;border:1px solid #ddd}
 }
+/* Focus level filtering */
+.level-card.level-hidden{display:none}
+#eval-content.show-all .level-card.level-hidden{display:block}
+.show-all-btn{display:block;margin:10px auto 0;padding:8px 16px;min-height:44px;background:none;border:none;color:var(--gray-400);font-size:.8rem;cursor:pointer;text-decoration:underline;font:inherit;border-radius:var(--radius);transition:var(--transition)}
+.show-all-btn:hover{color:var(--gray-600);background:var(--gray-50)}
+.show-all-btn:focus-visible{outline:2px solid var(--la-focus);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -621,6 +627,7 @@ const state = {
   name: "",
   currentLevel: null,
   targetLevel: null,
+  focusLevel: null,
   currentDimIndex: 0, // global dimension index (0-19)
   selections: {},     // key: "catIdx-dimIdx", value: levelIdx (number)
   notes: {},          // key: "catIdx-dimIdx", value: string
@@ -732,6 +739,18 @@ function renderSetup() {
     </div>
   `;
 
+  if (!isManager) {
+    html += `
+      <div class="form-group">
+        <label for="select-focus-level">Your current or target level</label>
+        <select id="select-focus-level">
+          <option value="">Select a level</option>
+          ${LEVELS.map(l => `<option value="${l}" ${state.focusLevel === l ? 'selected' : ''}>${l}</option>`).join('')}
+        </select>
+      </div>
+    `;
+  }
+
   if (isManager) {
     html += `
       <fieldset class="form-group" style="border:none;padding:0">
@@ -803,11 +822,32 @@ function startEvaluation() {
     if (targetSel && document.getElementById('target-level-field').style.display !== 'none') {
       state.targetLevel = targetSel.value;
     }
+    state.focusLevel = state.targetLevel || state.currentLevel || null;
+  } else {
+    const focusSel = document.getElementById('select-focus-level');
+    if (!focusSel.value) {
+      focusSel.style.borderColor = 'var(--red-500)';
+      focusSel.focus();
+      return;
+    }
+    state.focusLevel = focusSel.value;
   }
 
   saveState();
   renderEvaluation();
   showScreen('screen-eval');
+}
+
+function getVisibleLevelRange() {
+  if (!state.focusLevel) return null; // null = show all
+  const idx = LEVELS.indexOf(state.focusLevel);
+  return { start: Math.max(0, idx - 1), end: Math.min(4, idx + 1) };
+}
+
+function toggleAllLevels(btn) {
+  const content = document.getElementById('eval-content');
+  content.classList.toggle('show-all');
+  btn.textContent = content.classList.contains('show-all') ? 'Masquer les niveaux extrêmes' : 'Voir tous les niveaux';
 }
 
 // ============================================================
@@ -858,13 +898,15 @@ function renderEvaluation() {
   </div>`;
 
   {
+    const range = getVisibleLevelRange();
     LEVELS.forEach((level, levelIdx) => {
       const data = dim.levels[level];
       const isSelected = sel === levelIdx;
       const isExpanded = isSelected;
       const preview = data.core.split('.')[0] + '.';
+      const isHidden = range !== null && (levelIdx < range.start || levelIdx > range.end);
 
-      html += `<div class="level-card ${isSelected ? 'selected' : ''} ${isExpanded ? 'expanded' : ''}" data-level="${levelIdx}" aria-expanded="${isExpanded}" onclick="toggleCard(${levelIdx})">
+      html += `<div class="level-card ${isSelected ? 'selected' : ''} ${isExpanded ? 'expanded' : ''} ${isHidden ? 'level-hidden' : ''}" data-level="${levelIdx}" aria-expanded="${isExpanded}" onclick="toggleCard(${levelIdx})">
         <div class="level-card-header">
           <div class="left">
             <span class="level-number">${levelIdx + 1}</span>
@@ -890,6 +932,10 @@ function renderEvaluation() {
         </div>
       </div>`;
     });
+
+    if (range !== null && (range.start > 0 || range.end < 4)) {
+      html += `<button type="button" class="show-all-btn" onclick="toggleAllLevels(this)">Voir tous les niveaux</button>`;
+    }
   }
 
   document.getElementById('eval-content').innerHTML = html;
