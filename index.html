@@ -327,7 +327,7 @@ button:focus-visible,.btn:focus-visible,.mode-card:focus-visible,.level-card:foc
       <div class="result-card strengths"><h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"/></svg> Top 3 Strengths</h3><div id="strengths-list"></div></div>
       <div class="result-card growth"><h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg> Top 3 Growth Areas</h3><div id="growth-list"></div></div>
     </div>
-    <div class="misalignment-section"><h3>Potential Misalignments</h3><div id="misalignments-list"></div></div>
+    <div class="misalignment-section"><h3>Points de vigilance</h3><div id="misalignments-list"></div></div>
     <div style="margin-top:32px"><h3 style="margin-bottom:12px">Detailed Scores</h3><div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table id="detailed-table" class="detail-table"></table></div></div>
     <div class="export-buttons">
       <button class="btn btn-secondary" onclick="downloadReport()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download Report (.md)</button>
@@ -647,7 +647,10 @@ const MISALIGNMENT_DIMS = ALL_DIMS.filter(d => d.catIdx === 4);
 const TOTAL_DIMS = EVAL_DIMS.length; // 14
 
 function getEvaluatedCount() {
-  return Object.keys(state.selections).length;
+  return Object.keys(state.selections).filter(k => {
+    const catIdx = parseInt(k.split('-')[0], 10);
+    return catIdx < 4;
+  }).length;
 }
 
 function showToast(msg) {
