@@ -257,7 +257,7 @@ button:focus-visible,.btn:focus-visible,.mode-card:focus-visible,.level-card:foc
       <img src="lumapps-transparent.png" alt="LumApps" class="hero-logo">
       <h1>PM <span>Career Ladder</span></h1>
       <p class="subtitle">Self-Assessment Tool</p>
-      <p class="meta">20 dimensions &middot; 5 levels &middot; ~25 min</p>
+      <p class="meta">14 dimensions &middot; 5 levels &middot; ~20 min</p>
       <a href="https://docs.google.com/spreadsheets/d/1a6TXmrpbvKiXqBuvZ1_Cvs8g7Spj97ndDmIKQeRY5Cc/edit?gid=986928926#gid=986928926" target="_blank" rel="noopener" style="display:inline-block;margin-top:16px;color:var(--la-yellow);font-size:.85rem;text-decoration:underline;opacity:.8">View the full career ladder spreadsheet</a>
     </div>
     <div class="mode-cards">
@@ -288,7 +288,7 @@ button:focus-visible,.btn:focus-visible,.mode-card:focus-visible,.level-card:foc
   <div id="screen-eval" class="screen">
     <div class="progress-bar-container">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span class="progress-bar-text"><strong id="progress-count">0</strong> of 20 dimensions &mdash; <span id="progress-percent">0%</span></span>
+        <span class="progress-bar-text"><strong id="progress-count">0</strong> of 14 dimensions &mdash; <span id="progress-percent">0%</span></span>
         <button type="button" class="skip-link" style="margin:0;padding:4px 12px;font-size:.75rem" onclick="confirmStartOver()">Start over</button>
       </div>
       <div class="progress-bar-outer"><div id="progress-bar" class="progress-bar-inner" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Assessment progress" style="width:0%"></div></div>
@@ -642,7 +642,9 @@ function getAllDimensions() {
 }
 
 const ALL_DIMS = getAllDimensions();
-const TOTAL_DIMS = ALL_DIMS.length;
+const EVAL_DIMS = ALL_DIMS.filter(d => d.catIdx < 4);
+const MISALIGNMENT_DIMS = ALL_DIMS.filter(d => d.catIdx === 4);
+const TOTAL_DIMS = EVAL_DIMS.length; // 14
 
 function getEvaluatedCount() {
   return Object.keys(state.selections).length;
@@ -819,17 +821,16 @@ function updateProgressBar() {
 }
 
 function renderStepper() {
-  const shortNames = ["Impact", "Craft", "People", "Strategy", "Misalign."];
-  const currentDim = ALL_DIMS[state.currentDimIndex];
+  const shortNames = ["Impact", "Craft", "People", "Strategy"];
+  const currentDim = EVAL_DIMS[state.currentDimIndex];
   let html = '<div class="stepper">';
-  CAREER_LADDER.forEach((cat, i) => {
+  CAREER_LADDER.slice(0, 4).forEach((cat, i) => {
     if (i > 0) html += '<div class="step-line"></div>';
     const isActive = i === currentDim.catIdx;
     const catDims = cat.dimensions;
     const allDone = catDims.every((_, di) => state.selections.hasOwnProperty(`${i}-${di}`));
     const cls = allDone ? 'completed' : (isActive ? 'active' : '');
-    // Click to go to first dim of that category
-    const firstGlobal = ALL_DIMS.findIndex(d => d.catIdx === i);
+    const firstGlobal = EVAL_DIMS.findIndex(d => d.catIdx === i);
     html += `<button type="button" class="step-col" onclick="goToDimension(${firstGlobal})" aria-label="${cat.category}${allDone ? ', completed' : ''}" ${isActive ? 'aria-current="step"' : ''}>
       <div class="step-circle ${cls}">${allDone ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : (i + 1)}</div>
       <div class="step-label ${isActive ? 'active' : ''}">${shortNames[i]}</div>
@@ -843,7 +844,7 @@ function renderEvaluation() {
   updateProgressBar();
   renderStepper();
 
-  const dim = ALL_DIMS[state.currentDimIndex];
+  const dim = EVAL_DIMS[state.currentDimIndex];
   const selKey = `${dim.catIdx}-${dim.dimIdx}`;
   const sel = state.selections[selKey];
   let html = `<div class="dim-header">
@@ -909,7 +910,7 @@ function toggleCard(levelIdx) {
 }
 
 function selectLevel(levelIdx) {
-  const dim = ALL_DIMS[state.currentDimIndex];
+  const dim = EVAL_DIMS[state.currentDimIndex];
   const key = `${dim.catIdx}-${dim.dimIdx}`;
   if (state.selections[key] === levelIdx) {
     delete state.selections[key];
@@ -927,7 +928,7 @@ function selectLevel(levelIdx) {
 }
 
 function saveNote(value) {
-  const dim = ALL_DIMS[state.currentDimIndex];
+  const dim = EVAL_DIMS[state.currentDimIndex];
   const key = `${dim.catIdx}-${dim.dimIdx}`;
   if (value.trim()) {
     state.notes[key] = value;
@@ -949,7 +950,7 @@ function goToDimension(idx) {
 }
 
 function nextDimension() {
-  const dim = ALL_DIMS[state.currentDimIndex];
+  const dim = EVAL_DIMS[state.currentDimIndex];
   const key = `${dim.catIdx}-${dim.dimIdx}`;
   if (!state.selections.hasOwnProperty(key) || state.selections[key] === null) return;
   if (state.currentDimIndex < TOTAL_DIMS - 1) {
@@ -1029,24 +1030,19 @@ function submitContext() {
 // ============================================================
 function computeResults() {
   const dimensionScores = [];
-  const misalignments = [];
 
-  CAREER_LADDER.forEach((cat, catIdx) => {
-    cat.dimensions.forEach((dim, dimIdx) => {
-      const key = `${catIdx}-${dimIdx}`;
-      const sel = state.selections[key];
-      const skipped = !state.selections.hasOwnProperty(key) || sel === null;
-      const entry = {
-        category: cat.category,
-        categoryIdx: catIdx,
-        dimension: dim.name,
-        level: skipped ? null : sel + 1,
-        levelIdx: skipped ? null : sel,
-        levelName: skipped ? null : LEVELS[sel],
-        skipped
-      };
-      if (catIdx === 4) misalignments.push(entry);
-      else dimensionScores.push(entry);
+  EVAL_DIMS.forEach(dim => {
+    const key = `${dim.catIdx}-${dim.dimIdx}`;
+    const sel = state.selections[key];
+    const skipped = !state.selections.hasOwnProperty(key) || sel === null;
+    dimensionScores.push({
+      category: dim.category,
+      categoryIdx: dim.catIdx,
+      dimension: dim.name,
+      level: skipped ? null : sel + 1,
+      levelIdx: skipped ? null : sel,
+      levelName: skipped ? null : LEVELS[sel],
+      skipped
     });
   });
 
@@ -1067,7 +1063,7 @@ function computeResults() {
   const strengthsSorted = [...scored].sort((a, b) => b.delta - a.delta || a.categoryIdx - b.categoryIdx);
   const growthSorted = [...scored].sort((a, b) => a.delta - b.delta || a.categoryIdx - b.categoryIdx);
 
-  return { categoryAverages, dimensionScores, misalignments, overallLevel, overallLevelName, overallAvg, strengths: strengthsSorted.slice(0, 3), growthAreas: growthSorted.slice(0, 3) };
+  return { categoryAverages, dimensionScores, overallLevel, overallLevelName, overallAvg, strengths: strengthsSorted.slice(0, 3), growthAreas: growthSorted.slice(0, 3) };
 }
 
 function renderProfileMap(categoryAverages) {
@@ -1129,22 +1125,8 @@ function renderResults() {
     `<div class="result-item"><div class="dim-name">${g.dimension}</div><div class="dim-level">${g.category} — ${g.levelName}</div></div>`
   ).join('');
 
-  // Misalignments
-  const mList = document.getElementById('misalignments-list');
-  const evalMisalignments = results.misalignments.filter(m => !m.skipped);
-  if (evalMisalignments.length === 0) {
-    mList.innerHTML = '<p style="color:var(--gray-400)">No misalignment dimensions were evaluated.</p>';
-  } else {
-    mList.innerHTML = evalMisalignments.map(m => {
-      const dim = CAREER_LADDER[4].dimensions.find(d => d.name === m.dimension);
-      const data = dim.levels[m.levelName];
-      return `<div class="misalignment-item">
-        <div class="dim-name">${m.dimension}</div>
-        <div class="pattern-level">${m.levelName} pattern</div>
-        <div class="pattern">${data.core}${data.pm ? '<br><br><span style="color:var(--gray-500);font-style:italic">[PM]' + data.pm + '</span>' : ''}</div>
-      </div>`;
-    }).join('');
-  }
+  // Points de vigilance — placeholder content, full rendering in Task 3
+  document.getElementById('misalignments-list').innerHTML = '';
 
   // Detailed table
   const table = document.getElementById('detailed-table');
@@ -1152,20 +1134,19 @@ function renderResults() {
   const hasGap = state.mode === 'manager' && targetIdx;
 
   let thtml = `<thead><tr><th>Category</th><th>Dimension</th><th>Level</th>${hasGap ? '<th>Target</th><th>Gap</th>' : ''}</tr></thead><tbody>`;
-  const allScores = [...results.dimensionScores, ...results.misalignments];
-  allScores.forEach(s => {
+  results.dimensionScores.forEach(s => {
     let rowClass = '';
     if (s.skipped) rowClass = 'skipped';
-    else if (hasGap && s.categoryIdx !== 4) {
+    else if (hasGap) {
       const gap = s.level - targetIdx;
       if (gap >= 0) rowClass = 'gap-green';
       else if (gap === -1) rowClass = 'gap-orange';
       else rowClass = 'gap-red';
     }
-    const gapVal = hasGap && !s.skipped && s.categoryIdx !== 4 ? s.level - targetIdx : null;
+    const gapVal = hasGap && !s.skipped ? s.level - targetIdx : null;
     thtml += `<tr class="${rowClass}">
       <td>${s.category}</td><td>${s.dimension}</td><td>${s.skipped ? 'Skipped' : s.levelName}</td>
-      ${hasGap ? `<td>${s.categoryIdx !== 4 ? state.targetLevel : '—'}</td><td>${gapVal !== null ? (gapVal >= 0 ? '+' : '') + gapVal : '—'}</td>` : ''}
+      ${hasGap ? `<td>${state.targetLevel}</td><td>${gapVal !== null ? (gapVal >= 0 ? '+' : '') + gapVal : '—'}</td>` : ''}
     </tr>`;
   });
   thtml += '</tbody>';
@@ -1237,8 +1218,7 @@ function generateReport() {
     results.dimensionScores.filter(d => !d.skipped).forEach(d => { const gap = d.level - ti; md += `| ${d.dimension} | ${d.levelName} | ${state.targetLevel} | ${gap >= 0 ? '+' : ''}${gap} |\n`; });
   }
 
-  md += `\n## Potential Misalignments\n\n| Dimension | Selected Pattern |\n|-----------|------------------|\n`;
-  results.misalignments.filter(m => !m.skipped).forEach(m => { const d = CAREER_LADDER[4].dimensions.find(x => x.name === m.dimension); md += `| ${m.dimension} | ${m.levelName}: ${d.levels[m.levelName].core} |\n`; });
+  // Potential Misalignments are no longer evaluated — omitted from report
 
   // Context & Reflections
   const questions = getContextQuestions();
@@ -1253,7 +1233,7 @@ function generateReport() {
   }
 
   md += `\n## Detailed Breakdown\n\n`;
-  CAREER_LADDER.forEach((cat, catIdx) => {
+  CAREER_LADDER.slice(0, 4).forEach((cat, catIdx) => {
     md += `### ${cat.category}\n\n`;
     cat.dimensions.forEach((dim, dimIdx) => {
       const key = `${catIdx}-${dimIdx}`;
@@ -1296,7 +1276,7 @@ function generateAIPack() {
   }
 
   text += `### Dimension-by-Dimension Results\n\n| Category | Dimension | Selected Level | Supporting Example |\n|----------|-----------|----------------|--------------------|\n`;
-  [...results.dimensionScores, ...results.misalignments].forEach(s => {
+  results.dimensionScores.forEach(s => {
     const key = `${s.categoryIdx}-${CAREER_LADDER[s.categoryIdx].dimensions.findIndex(d => d.name === s.dimension)}`;
     const note = state.notes[key] || '—';
     text += `| ${s.category} | ${s.dimension} | ${s.skipped ? 'Not evaluated' : s.levelName} | ${note.replace(/\n/g, ' ')} |\n`;
