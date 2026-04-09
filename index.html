@@ -318,9 +318,25 @@ button:focus-visible,.btn:focus-visible,.mode-card:focus-visible,.level-card:foc
     </div>
   </div>
 
-  <!-- Screen 3.5: Context Questions -->
-  <div id="screen-context" class="screen">
+  <!-- Screen 3.5: Potential Misalignments -->
+  <div id="screen-misalignments" class="screen">
     <button type="button" class="back-link" onclick="goToDimension(TOTAL_DIMS-1);showScreen('screen-eval')">&larr; Back to evaluation</button>
+    <div class="context-screen">
+      <div class="dim-header" style="margin-bottom:32px">
+        <div class="dim-category">Almost done</div>
+        <h2>Potential Misalignments</h2>
+        <p class="dim-desc">These anti-patterns appear at every level, in different forms. Keep them in mind as you write your reflections.</p>
+      </div>
+      <div id="misalignments-inline"></div>
+      <div style="display:flex;justify-content:center;margin-top:32px">
+        <button class="btn btn-primary" onclick="renderContextQuestions();showScreen('screen-context')">Continue &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Context Questions -->
+  <div id="screen-context" class="screen">
+    <button type="button" class="back-link" onclick="showScreen('screen-misalignments')">&larr; Back</button>
     <div class="context-screen">
       <div class="dim-header" style="margin-bottom:32px">
         <div class="dim-category">Almost done</div>
@@ -343,7 +359,7 @@ button:focus-visible,.btn:focus-visible,.mode-card:focus-visible,.level-card:foc
       <div class="result-card strengths"><h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"/></svg> Top 3 Strengths</h3><div id="strengths-list"></div></div>
       <div class="result-card growth"><h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg> Top 3 Growth Areas</h3><div id="growth-list"></div></div>
     </div>
-    <div class="misalignment-section"><h3>Potential Misalignments</h3><div id="misalignments-list"></div></div>
+
     <div style="margin-top:32px"><h3 style="margin-bottom:12px">Detailed Scores</h3><div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table id="detailed-table" class="detail-table"></table></div></div>
     <div class="export-buttons">
       <button class="btn btn-secondary" onclick="downloadReport()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download Report (.md)</button>
@@ -1021,8 +1037,8 @@ function nextDimension() {
     renderEvaluation();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
-    renderContextQuestions();
-    showScreen('screen-context');
+    renderMisalignments();
+    showScreen('screen-misalignments');
   }
 }
 
@@ -1036,8 +1052,32 @@ function prevDimension() {
 }
 
 function backToEval() {
-  renderContextQuestions();
-  showScreen('screen-context');
+  renderMisalignments();
+  showScreen('screen-misalignments');
+}
+
+// ============================================================
+// MISALIGNMENTS SCREEN
+// ============================================================
+function renderMisalignments() {
+  document.getElementById('misalignments-inline').innerHTML = MISALIGNMENT_DIMS.map(dim => `
+    <div class="vigilance-card">
+      <div class="vigilance-header">
+        <div class="vigilance-name">${dim.name}</div>
+        <div class="vigilance-desc">${dim.description}</div>
+      </div>
+      <div class="vigilance-levels">
+        ${LEVELS.map(level => {
+          const data = dim.levels[level];
+          if (!data) return '';
+          return `<div>
+            <div class="vigilance-level-name">${level}</div>
+            <div class="vigilance-level-text">${data.core}${data.pm ? `<br><span class="vigilance-pm">[PM] ${data.pm}</span>` : ''}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
 }
 
 // ============================================================
@@ -1186,29 +1226,6 @@ function renderResults() {
   document.getElementById('growth-list').innerHTML = results.growthAreas.map(g =>
     `<div class="result-item"><div class="dim-name">${g.dimension}</div><div class="dim-level">${g.category} — ${g.levelName}</div></div>`
   ).join('');
-
-  // Points de vigilance — all 6 anti-pattern dimensions, read-only
-  document.getElementById('misalignments-list').innerHTML = `
-    <p class="vigilance-intro">These anti-patterns appear at every level, in different forms. Nothing to check — just keep them in mind.</p>
-    ${MISALIGNMENT_DIMS.map(dim => `
-      <div class="vigilance-card">
-        <div class="vigilance-header">
-          <div class="vigilance-name">${dim.name}</div>
-          <div class="vigilance-desc">${dim.description}</div>
-        </div>
-        <div class="vigilance-levels">
-          ${LEVELS.map(level => {
-            const data = dim.levels[level];
-            if (!data) return '';
-            return `<div>
-              <div class="vigilance-level-name">${level}</div>
-              <div class="vigilance-level-text">${data.core}${data.pm ? `<br><span class="vigilance-pm">[PM] ${data.pm}</span>` : ''}</div>
-            </div>`;
-          }).join('')}
-        </div>
-      </div>
-    `).join('')}
-  `;
 
   // Detailed table
   const table = document.getElementById('detailed-table');
