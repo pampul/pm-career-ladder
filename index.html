@@ -1199,6 +1199,7 @@ function renderResults() {
         <div class="vigilance-levels">
           ${LEVELS.map(level => {
             const data = dim.levels[level];
+            if (!data) return '';
             return `<div>
               <div class="vigilance-level-name">${level}</div>
               <div class="vigilance-level-text">${data.core}${data.pm ? `<br><span class="vigilance-pm">[PM] ${data.pm}</span>` : ''}</div>
