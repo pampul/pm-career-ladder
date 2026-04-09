@@ -251,6 +251,16 @@ button:focus-visible,.btn:focus-visible,.mode-card:focus-visible,.level-card:foc
 .show-all-btn{display:block;margin:10px auto 0;padding:8px 16px;min-height:44px;background:none;border:none;color:var(--gray-400);font-size:.8rem;cursor:pointer;text-decoration:underline;font:inherit;border-radius:var(--radius);transition:var(--transition)}
 .show-all-btn:hover{color:var(--gray-600);background:var(--gray-50)}
 .show-all-btn:focus-visible{outline:2px solid var(--la-focus);outline-offset:2px}
+/* Points de vigilance */
+.vigilance-intro{font-size:.85rem;color:var(--gray-500);margin-bottom:16px;line-height:1.5;padding:12px 16px;background:var(--gray-50);border:1px solid var(--la-border);border-radius:var(--radius);border-left:3px solid var(--orange-500)}
+.vigilance-card{border:1px solid var(--la-border);border-radius:var(--radius-lg);margin-bottom:16px;overflow:hidden;background:#fff;box-shadow:var(--shadow-sm)}
+.vigilance-header{padding:14px 16px;background:var(--gray-50);border-bottom:1px solid var(--la-border)}
+.vigilance-name{font-weight:600;font-size:.9rem;color:var(--la-dark);margin-bottom:2px}
+.vigilance-desc{font-size:.8rem;color:var(--gray-500)}
+.vigilance-levels{padding:12px 16px;display:flex;flex-direction:column;gap:10px}
+.vigilance-level-name{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--la-card);margin-bottom:3px}
+.vigilance-level-text{font-size:.82rem;color:var(--gray-600);line-height:1.5}
+.vigilance-pm{color:var(--gray-400);font-style:italic}
 </style>
 </head>
 <body>
@@ -1177,8 +1187,27 @@ function renderResults() {
     `<div class="result-item"><div class="dim-name">${g.dimension}</div><div class="dim-level">${g.category} — ${g.levelName}</div></div>`
   ).join('');
 
-  // Points de vigilance — placeholder content, full rendering in Task 3
-  document.getElementById('misalignments-list').innerHTML = '';
+  // Points de vigilance — all 6 anti-pattern dimensions, read-only
+  document.getElementById('misalignments-list').innerHTML = `
+    <p class="vigilance-intro">Ces anti-patterns sont présents à tous les niveaux, sous des formes différentes. Aucun n'est à cocher — juste à garder en tête.</p>
+    ${MISALIGNMENT_DIMS.map(dim => `
+      <div class="vigilance-card">
+        <div class="vigilance-header">
+          <div class="vigilance-name">${dim.name}</div>
+          <div class="vigilance-desc">${dim.description}</div>
+        </div>
+        <div class="vigilance-levels">
+          ${LEVELS.map(level => {
+            const data = dim.levels[level];
+            return `<div>
+              <div class="vigilance-level-name">${level}</div>
+              <div class="vigilance-level-text">${data.core}${data.pm ? `<br><span class="vigilance-pm">[PM] ${data.pm}</span>` : ''}</div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+    `).join('')}
+  `;
 
   // Detailed table
   const table = document.getElementById('detailed-table');
