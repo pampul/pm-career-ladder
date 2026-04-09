@@ -1395,7 +1395,7 @@ function doStartOver() {
   if (loadState() && state.mode && state.name) {
     renderSetup();
     // Check if all dimensions evaluated — restore to results
-    const allEvaluated = ALL_DIMS.every(d => {
+    const allEvaluated = EVAL_DIMS.every(d => {
       const key = `${d.catIdx}-${d.dimIdx}`;
       return state.selections.hasOwnProperty(key) && state.selections[key] !== null;
     });
