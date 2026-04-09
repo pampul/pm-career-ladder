@@ -7,7 +7,7 @@
 
 ## Context
 
-The current self-assessment tool covers 21 dimensions across 5 categories (including 6 "Potential Misalignments"). Two pain points were identified:
+The current self-assessment tool covers 20 dimensions across 5 categories (including 6 "Potential Misalignments"). Two pain points were identified:
 
 1. **Too long** — presenting all 5 levels for every dimension creates visual noise and cognitive fatigue.
 2. **Potential Misalignments are awkward to check** — anti-patterns don't map well to a "select your level" interaction; they're better consumed as awareness content.
@@ -66,6 +66,6 @@ The section intro copy should frame it as: *"Ces anti-patterns sont présents à
 
 | Before | After |
 |---|---|
-| 21 steps in stepper | 15 steps |
+| 5 steps in stepper (1 per category) | 4 steps |
 | All 5 levels expanded or collapsed manually | 3 relevant levels shown by default |
 | Anti-patterns as checkable steps | Anti-patterns as read-only awareness section |
