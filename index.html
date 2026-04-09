@@ -827,6 +827,8 @@ function startEvaluation() {
     const focusSel = document.getElementById('select-focus-level');
     if (!focusSel.value) {
       focusSel.style.borderColor = 'var(--red-500)';
+      let err = document.getElementById('focus-level-error');
+      if (!err) { err = document.createElement('span'); err.id = 'focus-level-error'; err.setAttribute('role', 'alert'); err.style.cssText = 'color:var(--red-500);font-size:.8rem;margin-top:4px;display:block'; err.textContent = 'Level is required'; focusSel.parentNode.appendChild(err); focusSel.setAttribute('aria-describedby', 'focus-level-error'); }
       focusSel.focus();
       return;
     }
@@ -884,6 +886,7 @@ function renderStepper() {
 }
 
 function renderEvaluation() {
+  document.getElementById('eval-content').classList.remove('show-all');
   updateProgressBar();
   renderStepper();
 
@@ -904,7 +907,7 @@ function renderEvaluation() {
       const isSelected = sel === levelIdx;
       const isExpanded = isSelected;
       const preview = data.core.split('.')[0] + '.';
-      const isHidden = range !== null && (levelIdx < range.start || levelIdx > range.end);
+      const isHidden = range !== null && (levelIdx < range.start || levelIdx > range.end) && !isSelected;
 
       html += `<div class="level-card ${isSelected ? 'selected' : ''} ${isExpanded ? 'expanded' : ''} ${isHidden ? 'level-hidden' : ''}" data-level="${levelIdx}" aria-expanded="${isExpanded}" onclick="toggleCard(${levelIdx})">
         <div class="level-card-header">
